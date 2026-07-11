@@ -1507,6 +1507,20 @@ footer{
 
 <script>
 (function(){
+  /* ===== POSIÇÃO INICIAL — a página sempre abre no topo da hero ===== */
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual'; /* impede o navegador de restaurar o scroll */
+  }
+  /* remove hash residual (#alistamento, #cena2 etc.) de visitas/cliques anteriores */
+  if (location.hash) {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+  window.scrollTo(0, 0);
+  /* cobre "voltar pelo navegador" (bfcache) e recarregamentos */
+  window.addEventListener('pageshow', function(){
+    window.scrollTo({ top:0, left:0, behavior:'instant' });
+  });
+
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var isMobile = window.matchMedia('(max-width: 719px)').matches;
 
@@ -1525,8 +1539,18 @@ footer{
   ];
   function endBoot(){
     if (!boot.classList.contains('done')) {
+      /* tira o foco do botão "pular" para nenhum elemento puxar a viewport */
+      if (document.activeElement && document.activeElement.blur) {
+        document.activeElement.blur();
+      }
+      /* volta ao topo ANTES de liberar o scroll do body */
+      window.scrollTo({ top:0, left:0, behavior:'instant' });
       boot.classList.add('done');
       document.body.style.overflow = '';
+      /* reforço no frame seguinte, após o body ser liberado */
+      requestAnimationFrame(function(){
+        window.scrollTo({ top:0, left:0, behavior:'instant' });
+      });
       setTimeout(function(){ boot.remove(); }, 900);
     }
   }
