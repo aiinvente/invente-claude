@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
 <!-- ===== SEO / OPEN GRAPH ===== -->
 <title>Operação Claude — Invente com Claude | Do medo da IA à criação de projetos reais</title>
@@ -196,10 +196,17 @@ body::before{
    sem borda arredondada, sem margem. O fade inferior é feito por mask
    (esmaece fundo E blur juntos — nenhuma linha dura ou faixa solta). */
 nav{
-  position:fixed; top:0; left:0; right:0; z-index:50;
-  width:100%; margin:0; border-radius:0;
+  position:fixed;
+  top:0; left:0; right:0;
+  width:100%;
+  margin:0;
+  border-radius:0;
+  transform:none;
+  z-index:50;
   display:flex; align-items:center; gap:14px;
-  padding:10px 24px 22px;
+  /* safe area do iPhone aplicada apenas internamente:
+     o fundo escuro continua nascendo no topo absoluto da tela */
+  padding:calc(10px + env(safe-area-inset-top, 0px)) 24px 22px;
   background:linear-gradient(180deg,
     rgba(5,6,7,.98) 0%,
     rgba(5,6,7,.94) 55%,
@@ -213,11 +220,11 @@ nav{
 }
 nav img{ height:66px; width:auto; }
 @media (min-width:768px){
-  nav{ padding:12px 34px 26px; }
+  nav{ padding:calc(12px + env(safe-area-inset-top, 0px)) 34px 26px; }
   nav img{ height:110px; }
 }
 @media (max-width:719px){
-  nav{ padding:10px 20px 20px; }
+  nav{ padding:calc(10px + env(safe-area-inset-top, 0px)) 20px 20px; }
 }
 @media (max-width:400px){
   nav img{ height:56px; }
@@ -260,7 +267,7 @@ nav .status span{ display:none; }
     linear-gradient(180deg, rgba(5,6,7,.78) 0%, rgba(5,6,7,.15) 40%, rgba(5,6,7,.85) 82%, var(--black) 100%),
     radial-gradient(ellipse 70% 60% at 72% 40%, transparent 30%, rgba(5,6,7,.5) 100%);
 }
-.scene1 .content{ padding:150px 0 7svh; position:relative; }
+.scene1 .content{ padding:150px 24px 7svh; position:relative; }
 .scene1 .term{ margin-bottom:16px; }
 .scene1 h1{ max-width:900px; }
 .scene1 .lead{ margin:20px 0 30px; }
@@ -296,11 +303,17 @@ nav .status span{ display:none; }
       linear-gradient(180deg, rgba(5,6,7,.68) 0%, rgba(5,6,7,.22) 26%, rgba(5,6,7,.55) 48%, rgba(5,6,7,.93) 66%, var(--black) 88%);
   }
   .scene1 .content{
-    padding:58svh 0 52px; /* imagem respira em cima; copy entra embaixo, sobre fundo escuro */
+    /* o shorthand anterior (58svh 0 52px) zerava o padding lateral do
+       .container — por isso o texto colava nas bordas */
+    padding:58svh 24px 52px;
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
   }
   .scene1 h1{
-    font-size:clamp(2.1rem, 10.5vw, 2.8rem);
-    max-width:calc(100vw - 48px);
+    font-size:clamp(2rem, 10vw, 2.8rem);
+    max-width:100%;
+    overflow-wrap:break-word;
   }
   .scene1 .lead{
     margin:16px auto 26px 0;
