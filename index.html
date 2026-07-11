@@ -18,7 +18,7 @@
 
 <style>
 /* ==================================================================
-   OPERAÇÃO CLAUDE — v3 (autoridade + conversão)
+   OPERAÇÃO CLAUDE — v4 (ritmo, mobile e prova social real)
    ================================================================== */
 :root{
   --black:   #050607;
@@ -55,25 +55,34 @@ img{ max-width:100%; display:block; }
 a{ color:inherit; text-decoration:none; }
 ::selection{ background:var(--ecto); color:#03140a; }
 
-.container{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 22px; }
+.container{
+  width:100%; max-width:var(--maxw);
+  margin:0 auto; padding:0 24px;
+}
+section{ scroll-margin-top:110px; }
+
+/* Ritmo vertical padrão (compacto, mas com respiro) */
+.sec{ padding:64px 0; }
+@media (max-width:719px){ .sec{ padding:46px 0; } }
 
 .h-display{
   font-family:var(--display);
   font-weight:400;
   text-transform:uppercase;
-  line-height:.96;
+  line-height:.98;
   letter-spacing:.01em;
+  overflow-wrap:break-word;
 }
-.h-xl{ font-size:clamp(2.6rem, 9vw, 6.2rem); }
-.h-lg{ font-size:clamp(2rem, 6.5vw, 4rem); }
-.h-md{ font-size:clamp(1.5rem, 4vw, 2.4rem); }
+.h-xl{ font-size:clamp(2.2rem, 8vw, 6rem); }
+.h-lg{ font-size:clamp(1.75rem, 5.6vw, 3.6rem); }
+.h-md{ font-size:clamp(1.4rem, 4vw, 2.3rem); }
 .t-ecto{ color:var(--ecto); text-shadow:0 0 24px rgba(61,255,110,.45); }
 .t-orange{ color:var(--orange); text-shadow:0 0 24px rgba(249,115,22,.4); }
 .lead{ color:var(--grey); font-size:clamp(1rem, 2vw, 1.15rem); max-width:560px; }
 
 .term{
   font-family:var(--term);
-  font-size:1.05rem;
+  font-size:1.02rem;
   letter-spacing:.04em;
   color:var(--ecto);
   text-transform:uppercase;
@@ -82,9 +91,9 @@ a{ color:inherit; text-decoration:none; }
 
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:12px;
-  font-family:var(--display); font-size:1.05rem; letter-spacing:.08em;
+  font-family:var(--display); font-size:1rem; letter-spacing:.08em;
   text-transform:uppercase;
-  padding:18px 38px;
+  padding:17px 34px;
   border:1.5px solid var(--ecto);
   color:#03140a;
   background:var(--ecto);
@@ -92,23 +101,29 @@ a{ color:inherit; text-decoration:none; }
   cursor:pointer;
   box-shadow:0 0 30px rgba(61,255,110,.35);
   transition:transform .15s ease, box-shadow .2s ease, background .2s ease;
+  text-align:center;
+  max-width:100%;
 }
 .btn:hover{ transform:translateY(-2px); box-shadow:0 0 50px rgba(61,255,110,.55); background:#5cff87; }
 .btn-ghost{ background:transparent; color:var(--ecto); box-shadow:none; }
 .btn-ghost:hover{ background:rgba(61,255,110,.08); box-shadow:0 0 30px rgba(61,255,110,.15); }
-.btn-note{ font-family:var(--term); font-size:.95rem; color:var(--grey); margin-top:14px; letter-spacing:.06em; }
+.btn-note{ font-family:var(--term); font-size:.95rem; color:var(--grey); margin-top:12px; letter-spacing:.06em; }
+@media (max-width:719px){
+  .btn{ width:100%; padding:16px 20px; font-size:.94rem; }
+}
 
-/* CTA intermediário */
+/* CTA intermediário — compacto */
 .mid-cta{
   text-align:center;
-  padding:26px 0 0;
-  margin-top:56px;
+  padding:22px 0 0;
+  margin-top:34px;
   border-top:1px dashed rgba(61,255,110,.15);
 }
-.mid-cta .btn{ font-size:.98rem; padding:16px 32px; }
+.mid-cta .btn{ font-size:.96rem; padding:15px 30px; }
+@media (min-width:720px){ .mid-cta .btn{ width:auto; } }
 .mid-cta .note{
-  font-family:var(--term); font-size:.98rem; color:var(--grey);
-  letter-spacing:.05em; margin-top:12px;
+  font-family:var(--term); font-size:.96rem; color:var(--grey);
+  letter-spacing:.05em; margin-top:10px;
 }
 
 /* ===== Atmosfera global ===== */
@@ -141,7 +156,7 @@ body::before{
 }
 .flicker{ animation:flicker 6s linear infinite; }
 
-.rv{ opacity:0; transform:translateY(30px); transition:opacity .8s ease, transform .8s ease; }
+.rv{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
 .rv.in{ opacity:1; transform:none; }
 .rv-d1{ transition-delay:.15s; } .rv-d2{ transition-delay:.3s; } .rv-d3{ transition-delay:.45s; }
 @media (prefers-reduced-motion: reduce){
@@ -175,28 +190,36 @@ body::before{
 #boot .skip:hover{ color:var(--ecto); }
 
 /* ==================================================================
-   NAV
+   NAV — proteção visual reforçada
    ================================================================== */
 nav{
   position:fixed; top:0; left:0; right:0; z-index:50;
-  display:flex; align-items:center; gap:16px;
-  padding:16px 22px 22px;
-  background:linear-gradient(180deg, rgba(5,6,7,.95) 40%, transparent);
+  display:flex; align-items:center; gap:14px;
+  padding:12px 24px 16px;
+  background:linear-gradient(180deg, rgba(5,6,7,.94) 0%, rgba(5,6,7,.86) 65%, rgba(5,6,7,0) 100%);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  box-shadow:0 8px 28px rgba(0,0,0,.28);
 }
 nav img{ height:78px; width:auto; }
 @media (min-width:768px){
-  nav{ padding:20px 34px 30px; }
+  nav{ padding:14px 34px 20px; }
   nav img{ height:110px; }
+}
+@media (max-width:400px){
+  nav img{ height:64px; }
 }
 nav .status{
   margin-left:auto;
   font-family:var(--term); font-size:.95rem; color:var(--ecto);
   display:flex; align-items:center; gap:8px; letter-spacing:.06em;
+  white-space:nowrap;
 }
 nav .status i{
   width:8px; height:8px; border-radius:50%; background:var(--ecto);
   box-shadow:0 0 10px var(--ecto);
   animation:flicker 4s linear infinite;
+  flex:none;
 }
 nav .status span{ display:none; }
 @media (min-width:640px){ nav .status span{ display:inline; } }
@@ -205,7 +228,8 @@ nav .status span{ display:none; }
    CENA 01 — HERO
    ================================================================== */
 .scene1{
-  position:relative; min-height:100svh;
+  position:relative;
+  min-height:92svh;
   display:grid; align-items:end;
   overflow:hidden;
   isolation:isolate;
@@ -222,27 +246,56 @@ nav .status span{ display:none; }
     linear-gradient(180deg, rgba(5,6,7,.78) 0%, rgba(5,6,7,.15) 40%, rgba(5,6,7,.85) 82%, var(--black) 100%),
     radial-gradient(ellipse 70% 60% at 72% 40%, transparent 30%, rgba(5,6,7,.5) 100%);
 }
-.scene1 .content{ padding:0 0 9svh; position:relative; }
-.scene1 .term{ margin-bottom:18px; }
+.scene1 .content{ padding:150px 0 7svh; position:relative; }
+.scene1 .term{ margin-bottom:16px; }
 .scene1 h1{ max-width:900px; }
-.scene1 .lead{ margin:22px 0 34px; }
-.scene1 .ctas{ display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
+.scene1 .lead{ margin:20px 0 30px; }
+.scene1 .ctas{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
 .scene1 .scroll-hint{
-  position:absolute; left:50%; bottom:18px; transform:translateX(-50%);
+  position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
   font-family:var(--term); font-size:.9rem; color:var(--grey);
   letter-spacing:.2em; text-transform:uppercase;
   animation:hint 2.4s ease-in-out infinite;
+  white-space:nowrap;
 }
 @keyframes hint{ 0%,100%{ transform:translate(-50%,0); opacity:.6; } 50%{ transform:translate(-50%,8px); opacity:1; } }
+
+/* HERO MOBILE — composição própria */
+@media (max-width:719px){
+  .scene1{
+    min-height:auto;
+    display:block;
+  }
+  /* reenquadra: mostra o rosto e o Claude (lado direito da foto, terço superior) */
+  .scene1 .bg{
+    inset:0;
+    background-position:74% 12%;
+    background-size:cover;
+    transform:none !important; /* desliga parallax no mobile p/ manter enquadramento */
+  }
+  /* camada escura mais forte atrás da copy */
+  .scene1 .shade{
+    background:
+      linear-gradient(180deg, rgba(5,6,7,.72) 0%, rgba(5,6,7,.28) 30%, rgba(5,6,7,.62) 55%, rgba(5,6,7,.94) 78%, var(--black) 100%);
+  }
+  .scene1 .content{
+    padding:56svh 0 44px; /* área superior mostra a imagem; copy entra embaixo com fundo escuro */
+  }
+  .scene1 h1{ font-size:clamp(2.4rem, 12vw, 3.2rem); }
+  .scene1 .lead{ margin:16px 0 24px; max-width:100%; }
+  .scene1 .ctas{ flex-direction:column; align-items:stretch; gap:12px; }
+  .scene1 .scroll-hint{ display:none; }
+}
 
 /* ==================================================================
    CENA 02 — o fantasma é o medo
    ================================================================== */
-.scene2{ position:relative; padding:120px 0 0; overflow:hidden; }
+.scene2{ position:relative; padding:70px 0 0; overflow:hidden; }
+@media (max-width:719px){ .scene2{ padding:48px 0 0; } }
 .scene2 .big{ max-width:880px; }
 .scene2 .big .dim{ color:#41463f; text-shadow:none; }
-.scene2 .lead{ margin-top:26px; }
-.scene2 .claude-wide{ margin-top:70px; position:relative; }
+.scene2 .lead{ margin-top:20px; }
+.scene2 .claude-wide{ margin-top:44px; position:relative; }
 .scene2 .claude-wide img{
   width:100%;
   border:1px solid var(--line);
@@ -251,41 +304,42 @@ nav .status span{ display:none; }
   will-change:transform;
 }
 .scene2 .caption{
-  display:flex; flex-wrap:wrap; gap:10px 30px;
-  margin-top:16px;
-  font-family:var(--term); font-size:1rem; color:var(--grey);
+  display:flex; flex-wrap:wrap; gap:8px 26px;
+  margin-top:14px;
+  font-family:var(--term); font-size:.98rem; color:var(--grey);
   letter-spacing:.05em;
 }
 .scene2 .caption b{ color:var(--orange); font-weight:400; }
-.dossier{ display:grid; gap:14px; margin-top:60px; }
+.dossier{ display:grid; gap:12px; margin-top:38px; }
 @media (min-width:820px){ .dossier{ grid-template-columns:repeat(3,1fr); } }
 .dossier .item{
   border:1px solid var(--line);
   border-radius:6px;
-  padding:24px 22px;
+  padding:20px 20px;
   background:linear-gradient(180deg, rgba(61,255,110,.04), transparent);
 }
 .dossier .k{
   font-family:var(--term); font-size:.95rem; color:var(--ecto);
-  letter-spacing:.08em; display:block; margin-bottom:8px; text-transform:uppercase;
+  letter-spacing:.08em; display:block; margin-bottom:6px; text-transform:uppercase;
 }
-.dossier p{ color:var(--grey); font-size:.95rem; }
+.dossier p{ color:var(--grey); font-size:.93rem; }
 .dossier p b{ color:var(--white); font-weight:500; }
 
 /* ==================================================================
    CENA 03 — módulos como ambientes
    ================================================================== */
-.scene3{ padding:140px 0 40px; position:relative; }
-.scene3 .intro{ margin-bottom:80px; }
+.scene3{ padding:70px 0 30px; position:relative; }
+@media (max-width:719px){ .scene3{ padding:48px 0 22px; } }
+.scene3 .intro{ margin-bottom:42px; }
 .room{
   position:relative;
   border:1px solid rgba(255,255,255,.07);
   border-radius:8px;
   overflow:hidden;
-  margin-bottom:70px;
+  margin-bottom:34px;
   background:var(--graph);
   isolation:isolate;
-  min-height:440px;
+  min-height:400px;
   display:flex; align-items:center;
 }
 .room .room-img{
@@ -302,24 +356,24 @@ nav .status span{ display:none; }
   background:linear-gradient(90deg, rgba(5,6,7,.96) 0%, rgba(5,6,7,.82) 42%, rgba(5,6,7,.28) 72%, rgba(5,6,7,.05) 100%);
 }
 .room .inner{
-  padding:56px 30px;
+  padding:46px 30px;
   max-width:560px;
   opacity:.35; transform:translateX(-14px);
   transition:opacity 1s ease .3s, transform 1s ease .3s;
 }
-@media (min-width:768px){ .room .inner{ padding:84px 60px; } }
+@media (min-width:768px){ .room .inner{ padding:60px 56px; } }
 .room.lit .inner{ opacity:1; transform:none; }
 @media (max-width:719px){
-  .room{ min-height:0; display:block; }
-  .room .room-img{ position:relative; inset:auto; height:230px; object-position:70% center; z-index:0; transform:none; }
-  .room .room-shade{ background:linear-gradient(180deg, transparent 30%, var(--graph) 96%); z-index:1; height:232px; bottom:auto; }
-  .room .inner{ position:relative; z-index:2; padding:26px 24px 40px; }
+  .room{ min-height:0; display:block; margin-bottom:24px; }
+  .room .room-img{ position:relative; inset:auto; height:210px; object-position:70% center; z-index:0; transform:none; }
+  .room .room-shade{ background:linear-gradient(180deg, transparent 30%, var(--graph) 96%); z-index:1; height:212px; bottom:auto; }
+  .room .inner{ position:relative; z-index:2; padding:20px 22px 30px; }
 }
 .room .badge{
   display:inline-flex; align-items:center; gap:10px;
-  font-family:var(--term); font-size:1rem; letter-spacing:.1em;
+  font-family:var(--term); font-size:.95rem; letter-spacing:.08em;
   color:var(--orange); text-transform:uppercase;
-  margin-bottom:16px;
+  margin-bottom:14px;
 }
 .room .badge i{
   width:9px; height:9px; border-radius:50%; flex:none;
@@ -329,21 +383,22 @@ nav .status span{ display:none; }
 .room.lit .badge i{ background:var(--ecto); box-shadow:0 0 10px var(--ecto); }
 .room .badge .st::after{ content:"OFFLINE"; }
 .room.lit .badge .st::after{ content:"ONLINE"; color:var(--ecto); }
-.room h3{ margin-bottom:14px; }
+.room h3{ margin-bottom:12px; }
 .room p{ color:var(--grey); max-width:440px; }
-.room .gear{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+.room .gear{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
 .room .gear span{
-  font-family:var(--term); font-size:.9rem; letter-spacing:.05em;
+  font-family:var(--term); font-size:.88rem; letter-spacing:.05em;
   border:1px solid var(--line); border-radius:4px;
-  padding:4px 12px; color:var(--ecto); background:rgba(5,6,7,.55);
+  padding:3px 11px; color:var(--ecto); background:rgba(5,6,7,.55);
   text-transform:uppercase;
 }
 
 /* ==================================================================
    CENA 04 — pouca conversa, muita construção
    ================================================================== */
-.scene4{ padding:120px 0; position:relative; overflow:hidden; }
-.mon-grid{ display:grid; gap:16px; margin-top:60px; }
+.scene4{ padding:64px 0; position:relative; overflow:hidden; }
+@media (max-width:719px){ .scene4{ padding:46px 0; } }
+.mon-grid{ display:grid; gap:14px; margin-top:36px; }
 @media (min-width:680px){ .mon-grid{ grid-template-columns:repeat(3,1fr); } }
 .mon{
   border:1px solid rgba(255,255,255,.08);
@@ -377,28 +432,30 @@ nav .status span{ display:none; }
 .mon.orange .screen .glyph{ color:var(--orange-2); text-shadow:0 0 18px rgba(249,115,22,.55); }
 .mon .num{
   font-family:var(--term); font-size:.9rem; color:var(--grey);
-  letter-spacing:.12em; display:block; padding:14px 10px 2px;
+  letter-spacing:.12em; display:block; padding:12px 10px 2px;
 }
 .mon .title{
-  font-family:var(--display); font-size:1.05rem; letter-spacing:.05em;
+  font-family:var(--display); font-size:1.02rem; letter-spacing:.05em;
   text-transform:uppercase; padding:0 10px; color:var(--white);
 }
-.mon .desc{ font-size:.88rem; color:var(--grey); padding:5px 10px 2px; line-height:1.45; }
+.mon .desc{ font-size:.88rem; color:var(--grey); padding:4px 10px 2px; line-height:1.45; }
 
 /* ==================================================================
    PROVA SOCIAL — transmissões da comunidade
    ================================================================== */
-.social{ padding:110px 0; position:relative; overflow:hidden; }
+.social{ padding:64px 0; position:relative; overflow:hidden; }
+@media (max-width:719px){ .social{ padding:46px 0; } }
 .tx-band{
-  margin:0 0 60px;
+  margin:0 0 36px;
   border:1px solid var(--line);
   border-radius:6px;
   background:linear-gradient(90deg, rgba(61,255,110,.08), rgba(61,255,110,.02));
-  padding:18px 24px;
-  display:flex; align-items:center; justify-content:center; gap:14px;
-  font-family:var(--term); font-size:clamp(1.05rem, 3vw, 1.5rem);
-  letter-spacing:.1em; text-transform:uppercase; text-align:center;
+  padding:15px 20px;
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  font-family:var(--term); font-size:clamp(1rem, 2.6vw, 1.4rem);
+  letter-spacing:.08em; text-transform:uppercase; text-align:center;
   color:var(--white); flex-wrap:wrap;
+  line-height:1.5;
 }
 .tx-band i{
   width:10px; height:10px; border-radius:50%; background:var(--ecto);
@@ -406,14 +463,18 @@ nav .status span{ display:none; }
   animation:flicker 3s linear infinite;
 }
 .tx-band b{ color:var(--ecto); font-weight:400; }
-.tx-grid{ display:grid; gap:16px; }
+@media (max-width:719px){
+  .tx-band{ padding:14px 16px; font-size:1.02rem; }
+}
+.social .head{ max-width:760px; margin-bottom:34px; }
+.tx-grid{ display:grid; gap:14px; }
 @media (min-width:680px){ .tx-grid{ grid-template-columns:repeat(2,1fr); } }
 @media (min-width:1000px){ .tx-grid{ grid-template-columns:repeat(3,1fr); } }
 .tx-card{
   border:1px solid rgba(255,255,255,.08);
   border-radius:8px;
   background:var(--graph);
-  padding:10px;
+  padding:9px;
 }
 .tx-card .crt{
   border-radius:5px;
@@ -421,50 +482,75 @@ nav .status span{ display:none; }
     repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px),
     radial-gradient(ellipse 120% 100% at 50% 0%, rgba(61,255,110,.08), transparent 70%),
     #070a08;
-  padding:20px 18px;
-  min-height:230px;
-  display:grid; gap:14px; align-content:start;
+  padding:18px 16px;
+  height:100%;
+  display:grid; gap:12px; align-content:start;
 }
 .tx-card .tx-head{
   display:flex; align-items:center; gap:10px;
-  font-family:var(--term); font-size:.92rem; color:var(--ecto);
+  font-family:var(--term); font-size:.9rem; color:var(--ecto);
   letter-spacing:.1em; text-transform:uppercase;
 }
 .tx-card .tx-head i{
   width:8px; height:8px; border-radius:50%; background:var(--red);
-  box-shadow:0 0 8px var(--red); animation:flicker 2.5s linear infinite;
+  box-shadow:0 0 8px var(--red); animation:flicker 2.5s linear infinite; flex:none;
 }
-.tx-card .who{ display:flex; align-items:center; gap:12px; }
+.tx-card .who{ display:flex; align-items:center; gap:11px; }
 .tx-card .tx-photo{
-  width:46px; height:46px; flex:none; border-radius:50%;
-  border:1px dashed var(--line);
+  width:42px; height:42px; flex:none; border-radius:50%;
+  border:1px solid var(--line);
   display:grid; place-items:center;
-  font-family:var(--term); font-size:.6rem; color:var(--grey);
+  font-family:var(--term); font-size:1.05rem; color:var(--ecto);
+  background:rgba(61,255,110,.07);
   overflow:hidden;
-  /* para usar foto/avatar real: dentro desta div coloque
-     <img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover"> */
+  text-transform:uppercase;
+  /* para usar o avatar real do print:
+     <img src="avatar.jpg" alt="" style="width:100%;height:100%;object-fit:cover"> */
 }
-.tx-card .who b{ display:block; font-size:.95rem; font-weight:600; color:var(--white); line-height:1.2; }
-.tx-card .who small{ font-family:var(--term); font-size:.85rem; color:var(--grey); letter-spacing:.04em; }
-.tx-card .quote{ font-size:.92rem; color:var(--grey); font-style:italic; }
-.tx-card .quote.ph{ color:#5a6058; }
+.tx-card .who b{ display:block; font-size:.92rem; font-weight:600; color:var(--white); line-height:1.25; word-break:break-all; }
+.tx-card .quote{ font-size:.93rem; color:#c4c9c2; font-style:italic; }
 .tx-card .src{
-  font-family:var(--term); font-size:.82rem; color:#6a7068;
+  font-family:var(--term); font-size:.8rem; color:#6a7068;
   letter-spacing:.06em; text-transform:uppercase;
   display:flex; align-items:center; gap:8px;
 }
-.tx-card .src::before{ content:"▶"; color:var(--red); font-size:.7rem; }
+.tx-card .src::before{ content:"▶"; color:var(--red); font-size:.65rem; }
+
+/* transmissões secundárias — faixa compacta */
+.tx-mini-title{
+  font-family:var(--term); font-size:1rem; letter-spacing:.12em;
+  color:var(--grey); text-transform:uppercase;
+  margin:28px 0 14px;
+  display:flex; align-items:center; gap:12px;
+}
+.tx-mini-title::after{ content:""; flex:1; height:1px; background:linear-gradient(90deg, rgba(255,255,255,.12), transparent); }
+.tx-mini-grid{ display:grid; gap:10px; }
+@media (min-width:680px){ .tx-mini-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1000px){ .tx-mini-grid{ grid-template-columns:repeat(3,1fr); } }
+.tx-mini{
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:6px;
+  background:rgba(16,18,20,.7);
+  padding:13px 15px;
+  font-size:.86rem; color:var(--grey);
+}
+.tx-mini b{
+  font-family:var(--term); font-weight:400; font-size:.88rem;
+  color:var(--ecto); display:block; margin-bottom:3px;
+  letter-spacing:.04em; word-break:break-all;
+}
 
 /* ==================================================================
    ESTA OPERAÇÃO É PARA VOCÊ?
    ================================================================== */
-.fit{ padding:110px 0; position:relative; }
-.fit-grid{ display:grid; gap:16px; margin-top:56px; align-items:start; }
-@media (min-width:820px){ .fit-grid{ grid-template-columns:1.1fr .9fr; } }
+.fit{ padding:64px 0; position:relative; }
+@media (max-width:719px){ .fit{ padding:46px 0; } }
+.fit-grid{ display:grid; gap:14px; margin-top:34px; align-items:start; }
+@media (min-width:820px){ .fit-grid{ grid-template-columns:1.08fr .92fr; } }
 .fit-col{
   border:1px solid var(--line);
   border-radius:8px;
-  padding:34px 30px;
+  padding:26px 24px;
   background:linear-gradient(180deg, rgba(61,255,110,.05), transparent 60%);
 }
 .fit-col.no{
@@ -472,53 +558,55 @@ nav .status span{ display:none; }
   background:linear-gradient(180deg, rgba(224,49,49,.04), transparent 60%);
 }
 .fit-col .k{
-  font-family:var(--term); font-size:1.1rem; letter-spacing:.1em;
+  font-family:var(--term); font-size:1.08rem; letter-spacing:.1em;
   color:var(--ecto); text-transform:uppercase;
-  display:block; margin-bottom:22px;
+  display:block; margin-bottom:16px;
 }
 .fit-col.no .k{ color:#e0705e; }
-.fit-col ul{ list-style:none; display:grid; gap:13px; }
-.fit-col li{ display:flex; gap:12px; font-size:.95rem; color:var(--white); }
+.fit-col ul{ list-style:none; display:grid; gap:11px; }
+.fit-col li{ display:flex; gap:11px; font-size:.94rem; color:var(--white); }
 .fit-col li .mk{ font-family:var(--term); flex:none; color:var(--ecto); }
 .fit-col.no li{ color:var(--grey); }
 .fit-col.no li .mk{ color:#e0705e; }
 .fit-col.no .obs{
-  margin-top:22px; font-size:.85rem; color:#6a7068;
-  border-top:1px dashed rgba(255,255,255,.08); padding-top:16px;
+  margin-top:16px; font-size:.85rem; color:#6a7068;
+  border-top:1px dashed rgba(255,255,255,.08); padding-top:13px;
 }
 
 /* ==================================================================
    SEU EQUIPAMENTO DE OPERAÇÃO
    ================================================================== */
-.equip{ padding:110px 0; position:relative; overflow:hidden; }
-.equip-grid{ display:grid; gap:14px; margin-top:56px; grid-template-columns:repeat(2,1fr); }
+.equip{ padding:64px 0; position:relative; overflow:hidden; }
+@media (max-width:719px){ .equip{ padding:46px 0; } }
+.equip-grid{ display:grid; gap:12px; margin-top:34px; grid-template-columns:repeat(2,1fr); }
 @media (min-width:820px){ .equip-grid{ grid-template-columns:repeat(4,1fr); } }
 .eq{
   border:1px solid rgba(255,255,255,.08);
   border-radius:6px;
   background:var(--graph);
-  padding:22px 18px;
-  display:grid; gap:10px; align-content:start;
+  padding:18px 16px;
+  display:grid; gap:9px; align-content:start;
 }
 .eq .ic{
-  width:44px; height:44px;
+  width:42px; height:42px;
   border:1px solid var(--line); border-radius:6px;
   display:grid; place-items:center;
-  font-family:var(--term); font-size:1.3rem; color:var(--ecto);
+  font-family:var(--term); font-size:1.25rem; color:var(--ecto);
   background:rgba(61,255,110,.05);
   text-shadow:0 0 12px rgba(61,255,110,.5);
 }
-.eq b{ font-size:.92rem; font-weight:600; line-height:1.3; }
-.eq small{ font-size:.8rem; color:var(--grey); line-height:1.4; }
+.eq b{ font-size:.9rem; font-weight:600; line-height:1.3; }
+.eq small{ font-size:.79rem; color:var(--grey); line-height:1.4; }
 .eq.hl{ border-color:rgba(249,115,22,.4); }
 .eq.hl .ic{ color:var(--orange-2); border-color:rgba(249,115,22,.3); background:rgba(249,115,22,.06); text-shadow:0 0 12px rgba(249,115,22,.5); }
 
 /* ==================================================================
    QUEM COMANDA A OPERAÇÃO
    ================================================================== */
-.cmd{ padding:110px 0; position:relative; overflow:hidden; }
-.cmd-grid{ display:grid; gap:34px; align-items:center; }
-@media (min-width:880px){ .cmd-grid{ grid-template-columns:1.05fr .95fr; gap:60px; } }
+.cmd{ padding:64px 0; position:relative; overflow:hidden; scroll-margin-top:130px; }
+@media (max-width:719px){ .cmd{ padding:46px 0; } }
+.cmd-grid{ display:grid; gap:26px; align-items:center; }
+@media (min-width:880px){ .cmd-grid{ grid-template-columns:1.05fr .95fr; gap:52px; } }
 .cmd-photo{
   border:1px solid var(--line);
   border-radius:8px;
@@ -528,46 +616,72 @@ nav .status span{ display:none; }
 .cmd-photo img{ width:100%; height:100%; object-fit:cover; }
 .cmd-text .name{
   font-family:var(--display); font-size:clamp(1.6rem, 4vw, 2.2rem);
-  text-transform:uppercase; letter-spacing:.02em; margin:16px 0 14px;
+  text-transform:uppercase; letter-spacing:.02em; margin:14px 0 12px;
 }
 .cmd-text p{ color:var(--grey); max-width:520px; }
+.cmd-text .auth{
+  margin-top:14px;
+  color:var(--white);
+  font-size:.95rem;
+  border-left:2px solid var(--ecto);
+  padding-left:14px;
+}
+.cmd-text .auth b{ color:var(--ecto); font-weight:600; }
 .cmd-text .role{
-  font-family:var(--term); font-size:1rem; color:var(--orange);
-  letter-spacing:.08em; text-transform:uppercase; margin-top:16px; display:block;
+  font-family:var(--term); font-size:.98rem; color:var(--orange);
+  letter-spacing:.08em; text-transform:uppercase; margin-top:14px; display:block;
 }
 
 /* ==================================================================
    CENA 05 — a operação continua crescendo + próximas alas
    ================================================================== */
-.scene5{ padding:100px 0 120px; position:relative; }
+.scene5{ padding:64px 0; position:relative; }
+@media (max-width:719px){ .scene5{ padding:46px 0; } }
 .exp-box{
   border:1.5px dashed rgba(249,115,22,.5);
   border-radius:8px;
-  padding:46px 30px;
+  padding:38px 26px;
   position:relative;
   background:linear-gradient(180deg, rgba(249,115,22,.05), transparent 60%);
 }
-@media (min-width:768px){ .exp-box{ padding:60px 56px; } }
+@media (min-width:768px){ .exp-box{ padding:46px 48px; } }
 .exp-box .tag{
-  position:absolute; top:-14px; left:28px;
-  font-family:var(--term); font-size:1rem; letter-spacing:.12em;
+  position:absolute; top:-14px; left:24px;
+  font-family:var(--term); font-size:.98rem; letter-spacing:.12em;
   color:var(--orange); background:var(--black);
   padding:2px 14px; text-transform:uppercase;
   border:1px solid rgba(249,115,22,.5); border-radius:4px;
 }
-.exp-box h3{ margin-bottom:18px; max-width:680px; }
-.exp-box .exp-copy{ color:var(--grey); max-width:680px; display:grid; gap:12px; }
+.exp-box h3{ margin-bottom:14px; max-width:680px; }
+.exp-box .exp-copy{ color:var(--grey); max-width:680px; display:grid; gap:10px; }
 .exp-box .exp-copy b{ color:var(--white); font-weight:500; }
+
+/* regra da condição — destaque claro */
+.rule-grid{ display:grid; gap:12px; margin-top:22px; }
+@media (min-width:720px){ .rule-grid{ grid-template-columns:1fr 1fr; } }
+.rule-card{
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:6px;
+  background:rgba(5,6,7,.6);
+  padding:18px 20px;
+}
+.rule-card .k{
+  font-family:var(--term); font-size:.92rem; letter-spacing:.1em;
+  text-transform:uppercase; display:block; margin-bottom:6px;
+}
+.rule-card.before .k{ color:var(--ecto); }
+.rule-card.after .k{ color:var(--orange-2); }
+.rule-card p{ font-size:.92rem; color:var(--white); }
 
 /* Próximas alas */
 .alas-title{
-  font-family:var(--term); font-size:1.2rem; letter-spacing:.14em;
+  font-family:var(--term); font-size:1.15rem; letter-spacing:.14em;
   color:var(--ecto); text-transform:uppercase;
-  margin:44px 0 20px;
+  margin:32px 0 16px;
   display:flex; align-items:center; gap:12px;
 }
 .alas-title::after{ content:""; flex:1; height:1px; background:linear-gradient(90deg, var(--line), transparent); }
-.ala-grid{ display:grid; gap:16px; }
+.ala-grid{ display:grid; gap:14px; }
 @media (min-width:760px){ .ala-grid{ grid-template-columns:1fr 1fr; } }
 .ala-card{
   border:1px solid rgba(255,255,255,.09);
@@ -578,39 +692,39 @@ nav .status span{ display:none; }
 }
 .ala-card .ala-img{
   position:relative;
-  aspect-ratio:16/8;
+  aspect-ratio:16/7.5;
   overflow:hidden;
 }
 .ala-card .ala-img img{
   width:100%; height:100%;
   object-fit:cover; object-position:72% center;
-  filter:brightness(.55) saturate(.85);
+  filter:brightness(.62) saturate(.9);
   transition:filter .8s ease, transform .8s ease;
 }
-.ala-card:hover .ala-img img{ filter:brightness(.8) saturate(1); transform:scale(1.03); }
+.ala-card:hover .ala-img img{ filter:brightness(.85) saturate(1); transform:scale(1.03); }
 .ala-card .ala-img::after{
   content:""; position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(5,6,7,.15), rgba(5,6,7,.85) 92%);
+  background:linear-gradient(180deg, rgba(5,6,7,.1), rgba(5,6,7,.8) 94%);
 }
 .ala-card .status{
-  position:absolute; top:12px; left:12px; z-index:2;
-  font-family:var(--term); font-size:.82rem; letter-spacing:.12em;
+  position:absolute; top:10px; left:10px; z-index:2;
+  font-family:var(--term); font-size:.8rem; letter-spacing:.1em;
   text-transform:uppercase;
-  padding:4px 12px; border-radius:4px;
-  background:rgba(5,6,7,.85);
+  padding:3px 11px; border-radius:4px;
+  background:rgba(5,6,7,.88);
   border:1px solid;
 }
 .status.next{ color:var(--orange-2); border-color:rgba(249,115,22,.5); }
-.status.prev{ color:var(--grey); border-color:rgba(255,255,255,.2); }
+.status.prev{ color:#c9cec7; border-color:rgba(255,255,255,.25); }
 .status.comm{ color:var(--ecto); border-color:rgba(61,255,110,.4); }
-.ala-card .ala-body{ padding:20px 22px 26px; display:grid; gap:8px; align-content:start; }
+.ala-card .ala-body{ padding:16px 18px 20px; display:grid; gap:7px; align-content:start; }
 .ala-card .ala-body b{
-  font-family:var(--display); font-weight:400; font-size:1.05rem;
+  font-family:var(--display); font-weight:400; font-size:1.02rem;
   letter-spacing:.04em; text-transform:uppercase; line-height:1.2;
 }
-.ala-card .ala-body p{ font-size:.9rem; color:var(--grey); }
+.ala-card .ala-body p{ font-size:.88rem; color:var(--grey); }
 .ala-card .tape{
-  font-family:var(--term); font-size:.78rem; color:#6a7068;
+  font-family:var(--term); font-size:.76rem; color:#6a7068;
   letter-spacing:.14em; text-transform:uppercase;
   display:flex; align-items:center; gap:8px;
 }
@@ -624,9 +738,11 @@ nav .status span{ display:none; }
    ================================================================== */
 .scene6{
   position:relative; overflow:hidden;
-  padding:140px 0 120px;
+  padding:84px 0 70px;
   isolation:isolate;
+  scroll-margin-top:0;
 }
+@media (max-width:719px){ .scene6{ padding:56px 0 50px; } }
 .scene6 .bg{
   position:absolute; inset:-8% -2%; z-index:-2;
   background:url('cena-final.jpg') center 30% / cover no-repeat;
@@ -637,59 +753,61 @@ nav .status span{ display:none; }
   background:linear-gradient(180deg, var(--black) 0%, rgba(5,6,7,.55) 30%, rgba(5,6,7,.7) 70%, var(--black) 100%);
 }
 .scene6 .container{ text-align:center; max-width:860px; }
-.scene6 .lead{ margin:24px auto 0; }
+.scene6 .lead{ margin:20px auto 0; }
 
 .enlist{
-  max-width:640px; margin:70px auto 0;
+  max-width:640px; margin:44px auto 0;
   border:1px solid var(--line);
   border-radius:8px;
   background:rgba(5,6,7,.9);
+  -webkit-backdrop-filter:blur(6px);
   backdrop-filter:blur(6px);
   text-align:left;
   overflow:hidden;
   box-shadow:0 40px 120px rgba(0,0,0,.7), 0 0 80px rgba(61,255,110,.08);
 }
-.enlist .head{ padding:24px 28px; border-bottom:1px solid var(--line); }
-.enlist .head .term{ font-size:1.1rem; }
-.enlist ul{ list-style:none; padding:10px 28px; }
+.enlist .head{ padding:20px 24px; border-bottom:1px solid var(--line); }
+.enlist .head .term{ font-size:1.06rem; }
+.enlist ul{ list-style:none; padding:6px 24px; }
 .enlist li{
-  display:flex; gap:14px; align-items:baseline;
-  padding:14px 0;
+  display:flex; gap:13px; align-items:baseline;
+  padding:12px 0;
   border-bottom:1px dashed rgba(255,255,255,.08);
-  font-size:.96rem;
+  font-size:.94rem;
 }
 .enlist li:last-child{ border-bottom:none; }
 .enlist li .mk{ font-family:var(--term); color:var(--ecto); flex:none; }
 .enlist li.extra .mk{ color:var(--orange); }
-.enlist li small{ display:block; color:var(--grey); font-size:.83rem; }
+.enlist li small{ display:block; color:var(--grey); font-size:.82rem; }
 .enlist .price{
-  padding:32px 28px 38px;
+  padding:26px 24px 32px;
   border-top:1px solid var(--line);
   text-align:center;
   background:linear-gradient(180deg, transparent, rgba(61,255,110,.05));
 }
 /* >>> PREÇO — EDITE AQUI <<< */
-.price-from{ font-family:var(--term); font-size:1.15rem; color:var(--grey); text-decoration:line-through; letter-spacing:.06em; }
-.price-now{ font-family:var(--display); font-size:clamp(2.8rem, 8vw, 4rem); margin:2px 0 0; }
+.price-from{ font-family:var(--term); font-size:1.12rem; color:var(--grey); text-decoration:line-through; letter-spacing:.06em; }
+.price-now{ font-family:var(--display); font-size:clamp(2.6rem, 8vw, 3.8rem); margin:2px 0 0; }
 .price-now .cur{ font-size:.38em; color:var(--ecto); vertical-align:super; margin-right:4px; }
-.price-vista{ font-family:var(--term); font-size:1.2rem; color:var(--ecto); letter-spacing:.14em; text-transform:uppercase; margin-bottom:4px; }
-.price-cond{ font-family:var(--term); font-size:1rem; color:var(--grey); margin-bottom:18px; letter-spacing:.05em; }
+.price-vista{ font-family:var(--term); font-size:1.15rem; color:var(--ecto); letter-spacing:.14em; text-transform:uppercase; margin-bottom:3px; }
+.price-cond{ font-family:var(--term); font-size:.98rem; color:var(--grey); margin-bottom:16px; letter-spacing:.05em; }
 .price-bonus{
-  font-size:.9rem; color:var(--white);
+  font-size:.89rem; color:var(--white);
   border:1px solid rgba(249,115,22,.4); border-radius:6px;
   background:rgba(249,115,22,.06);
-  padding:12px 16px; margin:0 auto 24px; max-width:440px;
+  padding:11px 15px; margin:0 auto 20px; max-width:440px;
   line-height:1.5;
 }
-.price-cta-pre{ font-size:.95rem; color:var(--white); margin-bottom:16px; }
+.price-cta-pre{ font-size:.94rem; color:var(--white); margin-bottom:14px; }
 .price-cta-pre b{ color:var(--ecto); font-weight:600; }
 .price .btn{ width:100%; max-width:440px; }
 
 .guarantee{
-  display:flex; gap:16px; align-items:center; justify-content:center;
-  margin-top:40px;
-  font-family:var(--term); font-size:1.05rem; color:var(--grey);
+  display:flex; gap:14px; align-items:center; justify-content:center;
+  margin-top:28px;
+  font-family:var(--term); font-size:1.02rem; color:var(--grey);
   letter-spacing:.05em; flex-wrap:wrap;
+  text-align:center;
 }
 .guarantee b{
   color:var(--ecto); font-weight:400;
@@ -697,32 +815,32 @@ nav .status span{ display:none; }
   padding:4px 12px;
 }
 
-.faq{ max-width:680px; margin:90px auto 0; text-align:left; }
-.faq h3{ text-align:center; margin-bottom:30px; }
+.faq{ max-width:680px; margin:52px auto 0; text-align:left; }
+.faq h3{ text-align:center; margin-bottom:24px; }
 .faq-item{
   border:1px solid rgba(255,255,255,.08);
-  border-radius:6px; margin-bottom:10px;
+  border-radius:6px; margin-bottom:9px;
   background:rgba(5,6,7,.8); overflow:hidden;
 }
 .faq-q{
   width:100%; text-align:left; background:none; border:none; cursor:pointer;
-  color:var(--white); font-family:var(--body); font-weight:500; font-size:.98rem;
-  padding:17px 20px; display:flex; align-items:center; gap:12px;
+  color:var(--white); font-family:var(--body); font-weight:500; font-size:.96rem;
+  padding:15px 18px; display:flex; align-items:center; gap:12px;
 }
 .faq-q .plus{ margin-left:auto; flex:none; font-family:var(--term); color:var(--ecto); font-size:1.3rem; transition:transform .25s; }
 .faq-item.open .plus{ transform:rotate(45deg); }
 .faq-a{ max-height:0; overflow:hidden; transition:max-height .3s ease; }
-.faq-a p{ padding:0 20px 18px; color:var(--grey); font-size:.92rem; }
+.faq-a p{ padding:0 18px 16px; color:var(--grey); font-size:.91rem; }
 
 /* ==================================================================
    FOOTER
    ================================================================== */
 footer{
-  padding:50px 0 40px;
+  padding:38px 0 30px;
   border-top:1px solid rgba(255,255,255,.06);
 }
 .foot-grid{
-  display:grid; gap:26px; align-items:center;
+  display:grid; gap:20px; align-items:center;
   text-align:center;
 }
 @media (min-width:760px){
@@ -732,21 +850,21 @@ footer{
   display:inline-block;
   background:var(--white);
   border-radius:6px;
-  padding:10px 16px;
+  padding:9px 14px;
   justify-self:center;
 }
 @media (min-width:760px){ .foot-brand{ justify-self:start; } }
-.foot-brand img{ height:34px; width:auto; }
+.foot-brand img{ height:30px; width:auto; }
 .foot-links{
-  display:flex; flex-wrap:wrap; gap:8px 22px; justify-content:center;
-  font-family:var(--term); font-size:.95rem; color:var(--grey);
+  display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:center;
+  font-family:var(--term); font-size:.94rem; color:var(--grey);
   letter-spacing:.06em; text-transform:uppercase;
 }
 .foot-links a:hover{ color:var(--ecto); }
 .foot-legal{
-  font-family:var(--term); font-size:.9rem; color:#565b57;
+  font-family:var(--term); font-size:.88rem; color:#565b57;
   letter-spacing:.06em; text-transform:uppercase;
-  display:grid; gap:4px;
+  display:grid; gap:3px;
   justify-items:center;
 }
 @media (min-width:760px){ .foot-legal{ justify-items:end; text-align:right; } }
@@ -823,7 +941,7 @@ footer{
   <div class="container">
     <div class="intro rv">
       <p class="term">mapa do quartel-general · 3 ambientes + 1 ala em construção</p>
-      <h2 class="h-display h-lg" style="margin-top:14px">Cada módulo é uma <span class="t-ecto">sala da operação</span>.</h2>
+      <h2 class="h-display h-lg" style="margin-top:12px">Cada módulo é uma <span class="t-ecto">sala da operação</span>.</h2>
     </div>
 
     <!-- SALA 01 -->
@@ -890,7 +1008,7 @@ footer{
   <div class="container">
     <div class="rv" style="max-width:720px">
       <p class="term">registros da operação · o que você aprende a construir</p>
-      <h2 class="h-display h-lg" style="margin-top:14px">Pouca conversa.<br/><span class="t-orange">Muita construção.</span></h2>
+      <h2 class="h-display h-lg" style="margin-top:12px">Pouca conversa.<br/><span class="t-orange">Muita construção.</span></h2>
     </div>
     <div class="mon-grid">
       <div class="mon rv">
@@ -945,84 +1063,95 @@ footer{
 <section class="social">
   <div class="container">
     <!-- >>> FAIXA DE AUTORIDADE — edite o número aqui <<< -->
-    <div class="tx-band rv"><i></i>MAIS DE <b id="inscritos-count">90 MIL</b> PESSOAS ACOMPANHAM NOSSOS DOIS CANAIS NO YOUTUBE</div>
+    <div class="tx-band rv"><i></i><span>MAIS DE <b id="inscritos-count">90 MIL</b> PESSOAS ACOMPANHAM NOSSOS DOIS CANAIS NO YOUTUBE</span></div>
 
-    <div class="rv" style="max-width:760px;margin-bottom:56px">
+    <div class="head rv">
       <p class="term">interceptações confirmadas</p>
-      <h2 class="h-display h-lg" style="margin-top:14px">Transmissões da nossa <span class="t-ecto">comunidade</span>.</h2>
-      <p class="lead" style="margin-top:18px">O que as pessoas dizem sobre nossos conteúdos, aulas e demonstrações práticas no YouTube.</p>
+      <h2 class="h-display h-lg" style="margin-top:12px">Transmissões da nossa <span class="t-ecto">comunidade</span>.</h2>
+      <p class="lead" style="margin-top:14px">Mensagens reais publicadas por quem acompanha nossos conteúdos e aulas no YouTube.</p>
     </div>
 
-    <!-- >>> COMENTÁRIOS — substitua os placeholders por comentários reais do YouTube <<<
-         Para foto/avatar: dentro de .tx-photo coloque
-         <img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+    <!-- >>> COMENTÁRIOS REAIS — edite nomes e textos aqui.
+         Para avatar real: dentro de .tx-photo troque a letra por
+         <img src="avatar.jpg" alt="" style="width:100%;height:100%;object-fit:cover"> -->
     <div class="tx-grid">
       <div class="tx-card rv">
         <div class="crt">
-          <div class="tx-head"><i></i>MENSAGEM INTERCEPTADA 001</div>
+          <div class="tx-head"><i></i>TRANSMISSÃO 001</div>
           <div class="who">
-            <div class="tx-photo">FOTO</div>
-            <div><b>[NOME OU IDENTIFICADOR]</b><small>[área ou @usuário]</small></div>
+            <div class="tx-photo">P</div>
+            <div><b>@pedromagdalon8303</b></div>
           </div>
-          <p class="quote ph">"[INSERIR COMENTÁRIO REAL DO YOUTUBE]"</p>
-          <span class="src">Comentário publicado em nosso canal no YouTube</span>
+          <p class="quote">"Fantástico, o conteúdo de vocês está fora de série. Claro, direto e objetivo. Sem enrolação para vender. Parabéns à equipe! Me ajudou demais."</p>
+          <span class="src">Comentário publicado no YouTube</span>
         </div>
       </div>
       <div class="tx-card rv rv-d1">
         <div class="crt">
-          <div class="tx-head"><i></i>MENSAGEM INTERCEPTADA 002</div>
+          <div class="tx-head"><i></i>TRANSMISSÃO 002</div>
           <div class="who">
-            <div class="tx-photo">FOTO</div>
-            <div><b>[NOME OU IDENTIFICADOR]</b><small>[área ou @usuário]</small></div>
+            <div class="tx-photo">I</div>
+            <div><b>@IldesHenrique</b></div>
           </div>
-          <p class="quote ph">"[INSERIR COMENTÁRIO REAL DO YOUTUBE]"</p>
-          <span class="src">Comentário publicado em nosso canal no YouTube</span>
+          <p class="quote">"Um dos melhores vídeos que assisti recentemente, com conteúdo valioso e realmente útil. Top!"</p>
+          <span class="src">Comentário publicado no YouTube</span>
         </div>
       </div>
       <div class="tx-card rv rv-d2">
         <div class="crt">
-          <div class="tx-head"><i></i>MENSAGEM INTERCEPTADA 003</div>
+          <div class="tx-head"><i></i>TRANSMISSÃO 003</div>
           <div class="who">
-            <div class="tx-photo">FOTO</div>
-            <div><b>[NOME OU IDENTIFICADOR]</b><small>[área ou @usuário]</small></div>
+            <div class="tx-photo">F</div>
+            <div><b>@ferroadvocacia</b></div>
           </div>
-          <p class="quote ph">"[INSERIR COMENTÁRIO REAL DO YOUTUBE]"</p>
-          <span class="src">Comentário publicado em nosso canal no YouTube</span>
+          <p class="quote">"Excelentes dicas. Aliás, uma aula excepcional. Parabéns!"</p>
+          <span class="src">Comentário publicado no YouTube</span>
         </div>
       </div>
       <div class="tx-card rv">
         <div class="crt">
-          <div class="tx-head"><i></i>MENSAGEM INTERCEPTADA 004</div>
+          <div class="tx-head"><i></i>TRANSMISSÃO 004</div>
           <div class="who">
-            <div class="tx-photo">FOTO</div>
-            <div><b>[NOME OU IDENTIFICADOR]</b><small>[área ou @usuário]</small></div>
+            <div class="tx-photo">A</div>
+            <div><b>@ProfAline-v6w</b></div>
           </div>
-          <p class="quote ph">"[INSERIR COMENTÁRIO REAL DO YOUTUBE]"</p>
-          <span class="src">Comentário publicado em nosso canal no YouTube</span>
+          <p class="quote">"Foi uma aula incrível, didática impecável. Obrigada."</p>
+          <span class="src">Comentário publicado no YouTube</span>
         </div>
       </div>
       <div class="tx-card rv rv-d1">
         <div class="crt">
-          <div class="tx-head"><i></i>MENSAGEM INTERCEPTADA 005</div>
+          <div class="tx-head"><i></i>TRANSMISSÃO 005</div>
           <div class="who">
-            <div class="tx-photo">FOTO</div>
-            <div><b>[NOME OU IDENTIFICADOR]</b><small>[área ou @usuário]</small></div>
+            <div class="tx-photo">G</div>
+            <div><b>@drgiovanifrisene</b></div>
           </div>
-          <p class="quote ph">"[INSERIR COMENTÁRIO REAL DO YOUTUBE]"</p>
-          <span class="src">Comentário publicado em nosso canal no YouTube</span>
+          <p class="quote">"Excelente aula, seu jeito de explicar as coisas é muito dinâmico. Parabéns mesmo!"</p>
+          <span class="src">Comentário publicado no YouTube</span>
         </div>
       </div>
       <div class="tx-card rv rv-d2">
         <div class="crt">
-          <div class="tx-head"><i></i>MENSAGEM INTERCEPTADA 006</div>
+          <div class="tx-head"><i></i>TRANSMISSÃO 006</div>
           <div class="who">
-            <div class="tx-photo">FOTO</div>
-            <div><b>[NOME OU IDENTIFICADOR]</b><small>[área ou @usuário]</small></div>
+            <div class="tx-photo">S</div>
+            <div><b>@silvIAsantoro.organizer</b></div>
           </div>
-          <p class="quote ph">"[INSERIR COMENTÁRIO REAL DO YOUTUBE]"</p>
-          <span class="src">Comentário publicado em nosso canal no YouTube</span>
+          <p class="quote">"Parabéns pelo conteúdo. Direto, transparente, verdadeiro, atual e útil."</p>
+          <span class="src">Comentário publicado no YouTube</span>
         </div>
       </div>
+    </div>
+
+    <!-- transmissões secundárias -->
+    <div class="tx-mini-title rv">Outras transmissões captadas</div>
+    <div class="tx-mini-grid">
+      <div class="tx-mini rv"><b>@MônicaLan</b>"Agradeço sua dedicação em dar essa visão panorâmica com ótimos detalhes!"</div>
+      <div class="tx-mini rv"><b>@CanalVozesdoSertão</b>"Parabéns, meu amigo. Que conteúdo maravilhoso, entregou ouro puro!"</div>
+      <div class="tx-mini rv"><b>@alexandremedina3035</b>"Muito bom seu vídeo! Esta ferramenta realmente supera em muito outras do mesmo nível. Parabéns!"</div>
+      <div class="tx-mini rv"><b>@franciscohumbertodecarvalh5441</b>"Excelente e parabéns pela didática."</div>
+      <div class="tx-mini rv"><b>@ErikFerraz</b>"Vídeo sensacional. Parabéns a todos vocês e muito sucesso!"</div>
+      <div class="tx-mini rv"><b>@conversandocomvoce</b>"Adorei mesmo. Gratidão."</div>
     </div>
   </div>
 </section>
@@ -1034,7 +1163,7 @@ footer{
   <div class="container">
     <div class="rv" style="max-width:720px">
       <p class="term">triagem de operadores</p>
-      <h2 class="h-display h-lg" style="margin-top:14px">Esta operação é <span class="t-ecto">para você</span>?</h2>
+      <h2 class="h-display h-lg" style="margin-top:12px">Esta operação é <span class="t-ecto">para você</span>?</h2>
     </div>
     <div class="fit-grid">
       <div class="fit-col rv">
@@ -1045,22 +1174,22 @@ footer{
           <li><span class="mk">►</span>deseja criar conteúdos, sites, agentes e sistemas</li>
           <li><span class="mk">►</span>não sabe programar, mas quer construir</li>
           <li><span class="mk">►</span>quer economizar tempo e depender menos de várias ferramentas</li>
-          <li><span class="mk">►</span>sente que usa apenas uma pequena parte do potencial da IA</li>
+          <li><span class="mk">►</span>sente que utiliza apenas uma pequena parte do potencial da IA</li>
           <li><span class="mk">►</span>precisa organizar melhor informações, tarefas e processos</li>
           <li><span class="mk">►</span>quer transformar ideias em projetos reais</li>
-          <li><span class="mk">►</span>busca criar uma estrutura que possa reutilizar no dia a dia</li>
-          <li><span class="mk">►</span>quer aprender Claude e Claude Code com exemplos práticos</li>
+          <li><span class="mk">►</span>busca criar estruturas que possam ser reutilizadas no dia a dia</li>
+          <li><span class="mk">►</span>quer aprender Claude e Claude Code com demonstrações práticas</li>
         </ul>
       </div>
       <div class="fit-col no rv rv-d1">
         <span class="k">✗ NÃO É PARA VOCÊ SE:</span>
         <ul>
           <li><span class="mk">✗</span>procura apenas uma lista de prompts para copiar</li>
-          <li><span class="mk">✗</span>não pretende acompanhar ou praticar as aulas</li>
-          <li><span class="mk">✗</span>espera resultados automáticos sem dar contexto à IA</li>
-          <li><span class="mk">✗</span>não quer adaptar os exemplos para sua realidade</li>
+          <li><span class="mk">✗</span>não pretende acompanhar nem praticar as aulas</li>
+          <li><span class="mk">✗</span>espera resultados automáticos sem fornecer contexto</li>
+          <li><span class="mk">✗</span>não quer adaptar os exemplos para a própria realidade</li>
           <li><span class="mk">✗</span>acredita que a IA deve fazer tudo sem sua participação</li>
-          <li><span class="mk">✗</span>procura uma promessa de dinheiro rápido</li>
+          <li><span class="mk">✗</span>procura promessa de dinheiro rápido</li>
           <li><span class="mk">✗</span>não está disposto a testar e melhorar os projetos</li>
           <li><span class="mk">✗</span>quer apenas teoria, sem colocar nada em prática</li>
         </ul>
@@ -1078,7 +1207,7 @@ footer{
   <div class="container">
     <div class="rv" style="max-width:720px">
       <p class="term">inventário entregue no alistamento</p>
-      <h2 class="h-display h-lg" style="margin-top:14px">Seu equipamento de <span class="t-orange">operação</span>.</h2>
+      <h2 class="h-display h-lg" style="margin-top:12px">Seu equipamento de <span class="t-orange">operação</span>.</h2>
     </div>
     <div class="equip-grid">
       <div class="eq rv"><span class="ic">►</span><b>Aulas gravadas</b><small>passo a passo, do zero, no seu ritmo</small></div>
@@ -1106,6 +1235,7 @@ footer{
         <p class="term">quem comanda a operação</p>
         <div class="name">Cassiano Bassil</div>
         <p>Sócio-diretor de criação da Invente Comunicação, com mais de 25 anos de experiência em projetos criativos e produção audiovisual. Atua na integração entre criatividade, tecnologia e inteligência artificial aplicada à criação de conteúdo e negócios.</p>
+        <p class="auth">Um dos responsáveis pelos canais <b>Invente</b> e <b>Invente com IA</b>, acompanhados por uma comunidade com mais de <b>90 mil pessoas</b> no YouTube.</p>
         <span class="role">CANAL INVENTE COM IA · COMANDANTE DA OPERAÇÃO</span>
       </div>
     </div>
@@ -1121,8 +1251,19 @@ footer{
       <span class="tag">novas alas em construção</span>
       <h3 class="h-display h-md">A operação continua <span class="t-orange">crescendo</span>.</h3>
       <div class="exp-copy">
-        <p>O Invente com Claude continuará recebendo novos conteúdos ao longo de 2026. À medida que novas alas forem abertas, o valor do treinamento será reajustado para novos alunos.</p>
-        <p><b>Quem entrar antes da publicação do primeiro módulo extra recebe todos os módulos extras lançados até o final de 2026 sem pagar nada a mais.</b></p>
+        <p>O Invente com Claude continuará recebendo novos conteúdos ao longo de 2026.</p>
+      </div>
+
+      <!-- Regra da condição — destaque claro -->
+      <div class="rule-grid">
+        <div class="rule-card before rv">
+          <span class="k">Quem entra antes do primeiro módulo extra</span>
+          <p>Recebe todos os módulos extras lançados até o final de 2026 sem pagar nada a mais.</p>
+        </div>
+        <div class="rule-card after rv rv-d1">
+          <span class="k">Depois da publicação do primeiro módulo extra</span>
+          <p>O valor do treinamento será reajustado para novos alunos.</p>
+        </div>
       </div>
 
       <div class="alas-title">Próximas alas da operação</div>
@@ -1148,7 +1289,7 @@ footer{
           <div class="ala-body">
             <span class="tape"><i></i>ALA 05 · EM PROJETO</span>
             <b>Segundo Cérebro com Claude Code e Obsidian</b>
-            <p>Crie uma base de conhecimento conectada para organizar informações, documentos, ideias e projetos com Claude Code e Obsidian.</p>
+            <p>Construa uma base inteligente para organizar documentos, conhecimentos, ideias, projetos e informações usando Claude Code integrado ao Obsidian.</p>
           </div>
         </div>
         <!-- ALA 3 -->
@@ -1160,7 +1301,7 @@ footer{
           <div class="ala-body">
             <span class="tape"><i></i>ALA 06 · EM PROJETO</span>
             <b>Claude para Gestão de Negócios</b>
-            <p>Use o Claude para organizar rotinas, reuniões, documentos, relatórios, tarefas e processos — e apoiar análises, planejamento, produtividade e tomada de decisão no dia a dia da empresa.</p>
+            <p>Use o Claude para organizar reuniões, documentos, relatórios, tarefas, processos, análises, planejamento e tomada de decisão no seu negócio.</p>
           </div>
         </div>
         <!-- ALA 4 -->
@@ -1172,14 +1313,14 @@ footer{
           <div class="ala-body">
             <span class="tape"><i></i>ALA 07 · EM PROJETO</span>
             <b>Claude para Vendas e Atendimento</b>
-            <p>Crie agentes para apoiar o atendimento, qualificar leads, organizar oportunidades, realizar acompanhamentos e auxiliar na criação de propostas comerciais.</p>
+            <p>Crie agentes para apoiar atendimentos, qualificar leads, organizar oportunidades, acompanhar negociações e auxiliar na criação de propostas comerciais.</p>
           </div>
         </div>
       </div>
     </div>
 
     <!-- CTA INTERMEDIÁRIO 3 -->
-    <div class="mid-cta rv" style="border-top:none">
+    <div class="mid-cta rv" style="border-top:none;margin-top:26px">
       <a href="#alistamento" class="btn">Garantir a condição atual</a>
       <p class="note">Entre antes da chegada do primeiro módulo extra e evite o reajuste.</p>
     </div>
@@ -1234,15 +1375,15 @@ footer{
       <h3 class="h-display h-md rv">Perguntas do recruta</h3>
       <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Preciso saber programar?<span class="plus">+</span></button><div class="faq-a"><p>Não. O treinamento foi criado para pessoas comuns, empreendedores e criadores que não têm experiência com programação. O Claude Code executa a parte técnica enquanto você aprende a orientar, revisar e evoluir os projetos.</p></div></div>
       <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Estou começando do zero. Consigo acompanhar?<span class="plus">+</span></button><div class="faq-a"><p>Sim. O treinamento começa pelos fundamentos do Claude e avança gradualmente até Projetos, Skills, agentes, sites, vídeos e sistemas.</p></div></div>
-      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Funciona para o meu tipo de negócio?<span class="plus">+</span></button><div class="faq-a"><p>Sim. As aulas ensinam uma lógica que pode ser adaptada para diferentes segmentos. Você poderá usar seus próprios dados, identidade, processos e objetivos.</p></div></div>
+      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Funciona para o meu tipo de negócio?<span class="plus">+</span></button><div class="faq-a"><p>Sim. As aulas ensinam uma lógica que pode ser adaptada para diferentes segmentos. Você poderá usar os dados, a identidade, os processos e os objetivos do seu próprio negócio.</p></div></div>
       <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Preciso de um plano pago do Claude?<span class="plus">+</span></button><div class="faq-a"><p>Algumas aulas iniciais podem ser acompanhadas com recursos gratuitos. Para usar Claude Code e funções mais avançadas, um plano pago do Claude é recomendado. O treinamento explica o que será necessário em cada etapa.</p></div></div>
-      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Preciso comprar outras ferramentas?<span class="plus">+</span></button><div class="faq-a"><p>Algumas ferramentas utilizadas possuem planos gratuitos, limites de teste ou cobrança própria. Sempre que houver algum custo externo, isso deve ser informado claramente na aula.</p></div></div>
-      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">As ferramentas estão incluídas no valor do curso?<span class="plus">+</span></button><div class="faq-a"><p>O valor corresponde ao treinamento, às aulas e aos materiais disponibilizados. Assinaturas, APIs e serviços externos não estão incluídos.</p></div></div>
+      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Preciso comprar outras ferramentas?<span class="plus">+</span></button><div class="faq-a"><p>Algumas ferramentas utilizadas possuem planos gratuitos, testes ou cobranças próprias. Sempre que houver algum custo externo necessário, isso será explicado na aula correspondente.</p></div></div>
+      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">As ferramentas estão incluídas no valor do treinamento?<span class="plus">+</span></button><div class="faq-a"><p>O valor corresponde ao treinamento, às aulas e aos materiais disponibilizados. Assinaturas, APIs e serviços externos não estão incluídos.</p></div></div>
       <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Como recebo o acesso?<span class="plus">+</span></button><div class="faq-a"><p>Após a confirmação do pagamento, o acesso é liberado pela Hotmart. Você poderá assistir às aulas e acessar os materiais pela plataforma.</p></div></div>
-      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">O acesso expira?<span class="plus">+</span></button><div class="faq-a"><p>Não. Você continua com acesso ao conteúdo adquirido dentro da Hotmart. Quem entrar antes da publicação do primeiro módulo extra também receberá, sem custo adicional, todos os módulos extras lançados até o final de 2026. Após a entrada do primeiro módulo extra, o treinamento terá um novo valor para os próximos alunos.</p></div></div>
+      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">O acesso expira?<span class="plus">+</span></button><div class="faq-a"><p>Não. Você continua com acesso ao conteúdo adquirido dentro da Hotmart. Quem entrar antes da publicação do primeiro módulo extra também receberá, sem custo adicional, todos os módulos extras lançados até o final de 2026. Após a publicação do primeiro módulo extra, o treinamento terá um novo valor para os próximos alunos.</p></div></div>
       <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Quais materiais estão incluídos?<span class="plus">+</span></button><div class="faq-a"><p>O treinamento inclui aulas gravadas, prompts utilizados nas demonstrações, arquivos de apoio, templates e exemplos para você adaptar aos seus projetos.</p></div></div>
-      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Posso assistir pelo celular?<span class="plus">+</span></button><div class="faq-a"><p>Sim. As aulas podem ser acessadas pela Hotmart em diferentes dispositivos. Para executar os projetos com Claude Code, será mais adequado utilizar um computador.</p></div></div>
-      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Existe garantia?<span class="plus">+</span></button><div class="faq-a"><p>Sim. Você terá sete dias para conhecer o treinamento. Caso perceba que ele não é adequado para você, poderá solicitar o reembolso dentro do prazo informado.</p></div></div>
+      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Posso assistir pelo celular?<span class="plus">+</span></button><div class="faq-a"><p>Sim. As aulas podem ser acessadas pela Hotmart em diferentes dispositivos. Para executar os projetos com Claude Code, é mais adequado utilizar um computador.</p></div></div>
+      <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Existe garantia?<span class="plus">+</span></button><div class="faq-a"><p>Sim. Você terá sete dias para conhecer o treinamento. Caso perceba que ele não é adequado para você, poderá solicitar o reembolso dentro do prazo da garantia.</p></div></div>
       <div class="faq-item rv"><button class="faq-q" aria-expanded="false">Vou conseguir criar qualquer tipo de sistema?<span class="plus">+</span></button><div class="faq-a"><p>O módulo ensina a lógica para criar e adaptar sistemas personalizados usando Claude Code, low code e banco de dados. Recursos muito específicos podem exigir integrações, APIs ou etapas adicionais, mas você terá uma base sólida para continuar evoluindo o projeto.</p></div></div>
     </div>
   </div>
@@ -1274,6 +1415,7 @@ footer{
 <script>
 (function(){
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isMobile = window.matchMedia('(max-width: 719px)').matches;
 
   /* ===== BOOT SEQUENCE ===== */
   var boot = document.getElementById('boot');
@@ -1339,8 +1481,8 @@ footer{
     rooms.forEach(function(r){ io2.observe(r); });
   }
 
-  /* ===== PARALLAX ===== */
-  if (!reduced) {
+  /* ===== PARALLAX (desativado no mobile para preservar enquadramento) ===== */
+  if (!reduced && !isMobile) {
     var plx = document.querySelectorAll('[data-plx]');
     var ticking = false;
     function onScroll(){
