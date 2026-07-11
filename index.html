@@ -192,22 +192,36 @@ body::before{
 /* ==================================================================
    NAV — proteção visual reforçada
    ================================================================== */
+/* Máscara escura contínua: começa exatamente no topo, sem card interno,
+   sem borda arredondada, sem margem. O fade inferior é feito por mask
+   (esmaece fundo E blur juntos — nenhuma linha dura ou faixa solta). */
 nav{
   position:fixed; top:0; left:0; right:0; z-index:50;
+  width:100%; margin:0; border-radius:0;
   display:flex; align-items:center; gap:14px;
-  padding:12px 24px 16px;
-  background:linear-gradient(180deg, rgba(5,6,7,.94) 0%, rgba(5,6,7,.86) 65%, rgba(5,6,7,0) 100%);
+  padding:10px 24px 22px;
+  background:linear-gradient(180deg,
+    rgba(5,6,7,.98) 0%,
+    rgba(5,6,7,.94) 55%,
+    rgba(5,6,7,.78) 78%,
+    rgba(5,6,7,0) 100%);
   -webkit-backdrop-filter:blur(14px);
   backdrop-filter:blur(14px);
-  box-shadow:0 8px 28px rgba(0,0,0,.28);
+  -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+  mask-image:linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+  box-shadow:0 4px 18px rgba(0,0,0,.18);
 }
-nav img{ height:78px; width:auto; }
+nav img{ height:66px; width:auto; }
 @media (min-width:768px){
-  nav{ padding:14px 34px 20px; }
+  nav{ padding:12px 34px 26px; }
   nav img{ height:110px; }
 }
+@media (max-width:719px){
+  nav{ padding:10px 20px 20px; }
+}
 @media (max-width:400px){
-  nav img{ height:64px; }
+  nav img{ height:56px; }
+  nav .status{ font-size:.85rem; }
 }
 nav .status{
   margin-left:auto;
@@ -266,24 +280,43 @@ nav .status span{ display:none; }
     min-height:auto;
     display:block;
   }
-  /* reenquadra: mostra o rosto e o Claude (lado direito da foto, terço superior) */
+  /* reenquadra: apresentador mais à direita, rosto e Claude no terço superior,
+     lado esquerdo livre para a máscara escura */
   .scene1 .bg{
     inset:0;
-    background-position:74% 12%;
+    background-position:86% 8%;
     background-size:cover;
     transform:none !important; /* desliga parallax no mobile p/ manter enquadramento */
   }
-  /* camada escura mais forte atrás da copy */
+  /* camada escura reforçada à esquerda e na parte inferior — o texto nunca
+     atravessa o rosto: a copy só começa abaixo de 58svh, já em área escura */
   .scene1 .shade{
     background:
-      linear-gradient(180deg, rgba(5,6,7,.72) 0%, rgba(5,6,7,.28) 30%, rgba(5,6,7,.62) 55%, rgba(5,6,7,.94) 78%, var(--black) 100%);
+      linear-gradient(90deg, rgba(5,6,7,.55) 0%, rgba(5,6,7,.15) 45%, rgba(5,6,7,0) 70%),
+      linear-gradient(180deg, rgba(5,6,7,.68) 0%, rgba(5,6,7,.22) 26%, rgba(5,6,7,.55) 48%, rgba(5,6,7,.93) 66%, var(--black) 88%);
   }
   .scene1 .content{
-    padding:56svh 0 44px; /* área superior mostra a imagem; copy entra embaixo com fundo escuro */
+    padding:58svh 0 52px; /* imagem respira em cima; copy entra embaixo, sobre fundo escuro */
   }
-  .scene1 h1{ font-size:clamp(2.4rem, 12vw, 3.2rem); }
-  .scene1 .lead{ margin:16px 0 24px; max-width:100%; }
-  .scene1 .ctas{ flex-direction:column; align-items:stretch; gap:12px; }
+  .scene1 h1{
+    font-size:clamp(2.1rem, 10.5vw, 2.8rem);
+    max-width:calc(100vw - 48px);
+  }
+  .scene1 .lead{
+    margin:16px auto 26px 0;
+    max-width:calc(100vw - 48px);
+    line-height:1.7;
+  }
+  .scene1 .ctas{
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+  }
+  .scene1 .ctas .btn{
+    width:100%;
+    max-width:calc(100vw - 48px);
+    margin:0 auto;
+  }
   .scene1 .scroll-hint{ display:none; }
 }
 
@@ -528,16 +561,33 @@ nav .status span{ display:none; }
 @media (min-width:680px){ .tx-mini-grid{ grid-template-columns:repeat(2,1fr); } }
 @media (min-width:1000px){ .tx-mini-grid{ grid-template-columns:repeat(3,1fr); } }
 .tx-mini{
-  border:1px solid rgba(255,255,255,.07);
+  border:1px solid rgba(61,255,110,.14);
   border-radius:6px;
-  background:rgba(16,18,20,.7);
-  padding:13px 15px;
+  background:rgba(10,13,11,.75);
+  padding:14px 16px 12px;
   font-size:.86rem; color:var(--grey);
+  display:grid; gap:6px; align-content:start;
+}
+.tx-mini .cap{
+  display:flex; align-items:center; gap:8px;
+  font-family:var(--term); font-size:.74rem;
+  color:#6a7068; letter-spacing:.14em; text-transform:uppercase;
+}
+.tx-mini .cap i{
+  width:6px; height:6px; border-radius:50%; flex:none;
+  background:var(--ecto); opacity:.75;
+  box-shadow:0 0 6px rgba(61,255,110,.6);
+  animation:flicker 4.5s linear infinite;
 }
 .tx-mini b{
-  font-family:var(--term); font-weight:400; font-size:.88rem;
-  color:var(--ecto); display:block; margin-bottom:3px;
+  font-family:var(--term); font-weight:400; font-size:.9rem;
+  color:var(--ecto); display:block;
   letter-spacing:.04em; word-break:break-all;
+}
+.tx-mini .yt{
+  font-family:var(--term); font-size:.7rem; color:#565b57;
+  letter-spacing:.08em; text-transform:uppercase;
+  margin-top:2px;
 }
 
 /* ==================================================================
@@ -1146,12 +1196,42 @@ footer{
     <!-- transmissões secundárias -->
     <div class="tx-mini-title rv">Outras transmissões captadas</div>
     <div class="tx-mini-grid">
-      <div class="tx-mini rv"><b>@MônicaLan</b>"Agradeço sua dedicação em dar essa visão panorâmica com ótimos detalhes!"</div>
-      <div class="tx-mini rv"><b>@CanalVozesdoSertão</b>"Parabéns, meu amigo. Que conteúdo maravilhoso, entregou ouro puro!"</div>
-      <div class="tx-mini rv"><b>@alexandremedina3035</b>"Muito bom seu vídeo! Esta ferramenta realmente supera em muito outras do mesmo nível. Parabéns!"</div>
-      <div class="tx-mini rv"><b>@franciscohumbertodecarvalh5441</b>"Excelente e parabéns pela didática."</div>
-      <div class="tx-mini rv"><b>@ErikFerraz</b>"Vídeo sensacional. Parabéns a todos vocês e muito sucesso!"</div>
-      <div class="tx-mini rv"><b>@conversandocomvoce</b>"Adorei mesmo. Gratidão."</div>
+      <div class="tx-mini rv">
+        <span class="cap"><i></i>MENSAGEM CAPTADA</span>
+        <b>@MônicaLan</b>
+        "Agradeço sua dedicação em dar essa visão panorâmica com ótimos detalhes!"
+        <span class="yt">Comentário publicado no YouTube</span>
+      </div>
+      <div class="tx-mini rv">
+        <span class="cap"><i></i>MENSAGEM CAPTADA</span>
+        <b>@CanalVozesdoSertão</b>
+        "Parabéns, meu amigo. Que conteúdo maravilhoso, entregou ouro puro!"
+        <span class="yt">Comentário publicado no YouTube</span>
+      </div>
+      <div class="tx-mini rv">
+        <span class="cap"><i></i>MENSAGEM CAPTADA</span>
+        <b>@alexandremedina3035</b>
+        "Muito bom seu vídeo! Esta ferramenta realmente supera em muito outras do mesmo nível. Parabéns!"
+        <span class="yt">Comentário publicado no YouTube</span>
+      </div>
+      <div class="tx-mini rv">
+        <span class="cap"><i></i>MENSAGEM CAPTADA</span>
+        <b>@franciscohumbertodecarvalh5441</b>
+        "Excelente e parabéns pela didática."
+        <span class="yt">Comentário publicado no YouTube</span>
+      </div>
+      <div class="tx-mini rv">
+        <span class="cap"><i></i>MENSAGEM CAPTADA</span>
+        <b>@ErikFerraz</b>
+        "Vídeo sensacional. Parabéns a todos vocês e muito sucesso!"
+        <span class="yt">Comentário publicado no YouTube</span>
+      </div>
+      <div class="tx-mini rv">
+        <span class="cap"><i></i>MENSAGEM CAPTADA</span>
+        <b>@conversandocomvoce</b>
+        "Adorei mesmo. Gratidão."
+        <span class="yt">Comentário publicado no YouTube</span>
+      </div>
     </div>
   </div>
 </section>
