@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PF54SF3J');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
 <!-- ===== SEO / OPEN GRAPH ===== -->
-<!-- >>> IMPORTANTE: troque https://SEU-DOMINIO-AQUI.com pela URL real da página
-     (um único localizar-e-substituir resolve as 5 ocorrências) <<< -->
+<!-- URL definitiva configurada: https://www.inventecomia.com/inventecomclaude
+     (se um dia a página mudar de endereço, faça um localizar-e-substituir dessa URL) -->
 <title>Operação Claude — Invente com Claude | Do medo da IA à criação de projetos reais</title>
 <meta name="description" content="Você foi convocado. A Operação Claude é o treinamento que transforma o medo da IA em criação: Projetos, agentes, sites, vídeos e sistemas construídos com Claude — sem programar." />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#050607" />
-<link rel="canonical" href="https://SEU-DOMINIO-AQUI.com/" />
+<link rel="canonical" href="https://www.inventecomia.com/inventecomclaude/" />
 
 <meta property="og:title" content="Operação Claude — Invente com Claude" />
 <meta property="og:description" content="O verdadeiro fantasma não é a IA. É o medo dela. Entre na Operação por R$ 197." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="pt_BR" />
 <meta property="og:site_name" content="Invente com IA" />
-<meta property="og:url" content="https://SEU-DOMINIO-AQUI.com/" />
+<meta property="og:url" content="https://www.inventecomia.com/inventecomclaude/" />
 <!-- Imagem exibida ao compartilhar o link (WhatsApp, Instagram, etc.)
      PRECISA ser URL absoluta — caminho relativo não funciona nesses apps -->
-<meta property="og:image" content="https://SEU-DOMINIO-AQUI.com/og-image.jpg" />
+<meta property="og:image" content="https://www.inventecomia.com/inventecomclaude/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Cassiano Bassil segurando a criatura Claude — treinamento Invente com Claude" />
@@ -29,19 +36,18 @@
 <meta name="twitter:site" content="@InventeComIA" />
 <meta name="twitter:title" content="Operação Claude — Invente com Claude" />
 <meta name="twitter:description" content="Pare de apenas conversar com a IA. Comece a construir com ela. Do básico ao avançado, por R$ 197." />
-<meta name="twitter:image" content="https://SEU-DOMINIO-AQUI.com/og-image.jpg" />
+<meta name="twitter:image" content="https://www.inventecomia.com/inventecomclaude/og-image.jpg" />
 <link rel="icon" type="image/png" href="favicon.png" />
 
 <!-- Acelera o carregamento da imagem principal do hero -->
 <link rel="preload" as="image" href="hero-cassiano.jpg" />
 
 <!-- ============================================================
-     >>> PIXEL / ANALYTICS — COLE AQUI QUANDO FOR RODAR TRÁFEGO <<<
-     1) Meta Pixel: cole o código base do Gerenciador de Eventos
-        (Configurações > Fontes de dados > seu Pixel > Instalar).
-     2) GA4: cole a tag do Google Analytics, se usar.
-     3) Botão de WhatsApp do RD Station: o script do RD também
-        pode ser colado aqui — ele flutua sozinho na tela.
+     ANALYTICS: Google Tag Manager (GTM-PF54SF3J) JÁ INSTALADO acima.
+     Recomendação: gerencie o Meta Pixel e o GA4 DENTRO do GTM
+     (Tags > Nova > Meta Pixel / Google Analytics) — assim você não
+     precisa mexer mais neste arquivo. O botão de WhatsApp do RD
+     Station também pode ser publicado via GTM (tag HTML customizado).
      ============================================================ -->
 
 
@@ -205,7 +211,7 @@ body::before{
   position:fixed; inset:0; z-index:100;
   background:var(--black);
   display:grid; place-items:center;
-  transition:opacity .8s ease;
+  transition:opacity .45s ease;
 }
 #boot.done{ opacity:0; pointer-events:none; }
 #boot .inner{ width:min(560px, 88vw); }
@@ -213,7 +219,7 @@ body::before{
   font-family:var(--term); font-size:clamp(1rem, 3vw, 1.3rem);
   color:var(--ecto); line-height:1.9; white-space:pre-wrap;
   text-shadow:0 0 12px rgba(61,255,110,.5);
-  min-height:11em;
+  min-height:7.5em;
 }
 #boot .skip{
   margin-top:20px; font-family:var(--term); font-size:1rem;
@@ -1147,16 +1153,15 @@ footer{
 @media (min-width:760px){ .foot-legal{ justify-items:end; text-align:right; } }
 </style>
 <!-- ===== DADOS ESTRUTURADOS (Schema.org) =====
-     Ajuda o Google a entender que é um curso com preço e instrutor.
-     Lembre de trocar SEU-DOMINIO-AQUI aqui também (mesmo find-replace). -->
+     Ajuda o Google a entender que é um curso com preço e instrutor. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Course",
   "name": "Invente com Claude — Do Zero ao Avançado",
   "description": "Treinamento prático que ensina a usar o Claude do básico até aplicações avançadas: Projetos, Skills, agentes de IA, conteúdos, sites, vídeos e sistemas personalizados — sem programação avançada.",
-  "url": "https://SEU-DOMINIO-AQUI.com/",
-  "image": "https://SEU-DOMINIO-AQUI.com/og-image.jpg",
+  "url": "https://www.inventecomia.com/inventecomclaude/",
+  "image": "https://www.inventecomia.com/inventecomclaude/og-image.jpg",
   "inLanguage": "pt-BR",
   "provider": {
     "@type": "Organization",
@@ -1183,7 +1188,7 @@ footer{
     "price": "197.00",
     "priceCurrency": "BRL",
     "availability": "https://schema.org/InStock",
-    "url": "https://SEU-DOMINIO-AQUI.com/",
+    "url": "https://www.inventecomia.com/inventecomclaude/",
     "category": "Curso online"
   }
 }
@@ -1191,6 +1196,10 @@ footer{
 
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PF54SF3J"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <canvas id="dust" aria-hidden="true"></canvas>
 
@@ -1822,11 +1831,8 @@ footer{
   var bootText = document.getElementById('bootText');
   var lines = [
     '> INICIANDO QUARTEL-GENERAL...',
-    '> ENERGIA: OK',
-    '> PAINÉIS: OK',
-    '> DETECTOR DE CRIATURAS: ATIVO',
+    '> SISTEMAS: OK · DETECTOR DE CRIATURAS: ATIVO',
     '> ESPÉCIME LOCALIZADO: CLAUDE',
-    '> PERICULOSIDADE: ZERO (SE TREINADO)',
     '',
     '> BEM-VINDO À OPERAÇÃO, RECRUTA.'
   ];
@@ -1854,19 +1860,19 @@ footer{
     sessionStorage.setItem('opclaude_boot','1');
     var li = 0, ci = 0, out = '';
     (function type(){
-      if (li >= lines.length) { setTimeout(endBoot, 700); return; }
+      if (li >= lines.length) { setTimeout(endBoot, 450); return; }
       var line = lines[li];
       if (ci < line.length) {
         out += line[ci++];
         bootText.textContent = out;
-        setTimeout(type, 18);
+        setTimeout(type, 11);
       } else {
         out += '\n'; li++; ci = 0;
-        setTimeout(type, li === lines.length - 1 ? 420 : 160);
+        setTimeout(type, li === lines.length - 1 ? 260 : 100);
       }
     })();
     document.getElementById('bootSkip').addEventListener('click', endBoot);
-    setTimeout(endBoot, 9000);
+    setTimeout(endBoot, 5000);
   }
 
   /* ===== REVEALS ===== */
