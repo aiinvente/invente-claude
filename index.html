@@ -5,17 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
 <!-- ===== SEO / OPEN GRAPH ===== -->
+<!-- >>> IMPORTANTE: troque https://SEU-DOMINIO-AQUI.com pela URL real da página
+     (um único localizar-e-substituir resolve as 5 ocorrências) <<< -->
 <title>Operação Claude — Invente com Claude | Do medo da IA à criação de projetos reais</title>
 <meta name="description" content="Você foi convocado. A Operação Claude é o treinamento que transforma o medo da IA em criação: Projetos, agentes, sites, vídeos e sistemas construídos com Claude — sem programar." />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#050607" />
+<link rel="canonical" href="https://SEU-DOMINIO-AQUI.com/" />
+
 <meta property="og:title" content="Operação Claude — Invente com Claude" />
 <meta property="og:description" content="O verdadeiro fantasma não é a IA. É o medo dela. Entre na Operação por R$ 197." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="pt_BR" />
-<!-- Imagem exibida ao compartilhar o link (WhatsApp, Instagram, etc.) -->
-<meta property="og:image" content="og-image.jpg" />
+<meta property="og:site_name" content="Invente com IA" />
+<meta property="og:url" content="https://SEU-DOMINIO-AQUI.com/" />
+<!-- Imagem exibida ao compartilhar o link (WhatsApp, Instagram, etc.)
+     PRECISA ser URL absoluta — caminho relativo não funciona nesses apps -->
+<meta property="og:image" content="https://SEU-DOMINIO-AQUI.com/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cassiano Bassil segurando a criatura Claude — treinamento Invente com Claude" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@InventeComIA" />
+<meta name="twitter:title" content="Operação Claude — Invente com Claude" />
+<meta name="twitter:description" content="Pare de apenas conversar com a IA. Comece a construir com ela. Do básico ao avançado, por R$ 197." />
+<meta name="twitter:image" content="https://SEU-DOMINIO-AQUI.com/og-image.jpg" />
 <link rel="icon" type="image/png" href="favicon.png" />
 
 <!-- Acelera o carregamento da imagem principal do hero -->
@@ -915,6 +929,85 @@ nav .status span{ display:none; }
 .faq-a p{ padding:0 18px 16px; color:var(--grey); font-size:.91rem; }
 
 /* ==================================================================
+   MELHORIAS v5 — barra fixa mobile · contraste de preço · aura do Claude
+   ================================================================== */
+
+/* Preço: 497 carimbado + 197 com glow reforçado */
+.price-old{ position:relative; display:inline-block; padding-top:14px; }
+.stamp-adjust{
+  position:absolute; top:-4px; left:50%;
+  transform:translateX(-50%) rotate(-5deg);
+  font-family:var(--term); font-size:.72rem; font-weight:400;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--red); border:1.5px solid var(--red); border-radius:3px;
+  padding:1px 9px; white-space:nowrap;
+  background:rgba(5,6,7,.92);
+}
+.price-now{
+  text-shadow:0 0 34px rgba(61,255,110,.45), 0 0 80px rgba(61,255,110,.18);
+}
+.price-now .cur{ text-shadow:0 0 20px rgba(61,255,110,.7); }
+
+/* Aura pulsante sobre a criatura Claude no hero (desktop) */
+.claude-aura{
+  position:absolute; left:36%; top:46%;
+  width:340px; height:340px; margin:-170px 0 0 -170px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(61,255,110,.26) 0%, rgba(249,115,22,.12) 45%, transparent 70%);
+  filter:blur(28px);
+  mix-blend-mode:screen;
+  pointer-events:none;
+  z-index:0;
+  animation:aura 4.6s ease-in-out infinite;
+}
+.scene1 .content{ z-index:2; }
+@keyframes aura{
+  0%,100%{ transform:scale(1) translateY(0); opacity:.7; }
+  50%{ transform:scale(1.14) translateY(-10px); opacity:1; }
+}
+@media (max-width:719px){ .claude-aura{ display:none; } }
+@media (prefers-reduced-motion: reduce){ .claude-aura{ animation:none; opacity:.7; } }
+
+/* Barra de CTA fixa — apenas mobile, aparece após o hero, some na oferta */
+.sticky-cta{
+  position:fixed; left:0; right:0; bottom:0; z-index:55;
+  display:none;
+  align-items:center; gap:12px;
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+  background:rgba(5,6,7,.96);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  border-top:1px solid rgba(61,255,110,.35);
+  box-shadow:0 -8px 30px rgba(0,0,0,.5);
+  transform:translateY(105%);
+  transition:transform .35s ease;
+}
+.sticky-cta.show{ transform:translateY(0); }
+@media (max-width:719px){ .sticky-cta{ display:flex; } }
+.sticky-cta .sc-info{
+  display:flex; align-items:center; gap:9px;
+  font-family:var(--term); font-size:.95rem;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:var(--grey); line-height:1.25; min-width:0;
+}
+.sticky-cta .sc-info i{
+  width:8px; height:8px; border-radius:50%; flex:none;
+  background:var(--ecto); box-shadow:0 0 10px var(--ecto);
+  animation:flicker 3s linear infinite;
+}
+.sticky-cta .sc-info b{ color:var(--ecto); font-weight:400; }
+.sticky-cta .sc-btn{
+  margin-left:auto; flex:none;
+  font-family:var(--display); font-size:.9rem; letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#03140a; background:var(--ecto);
+  border:1.5px solid var(--ecto); border-radius:4px;
+  padding:11px 20px;
+  box-shadow:0 0 24px rgba(61,255,110,.4);
+}
+@media (prefers-reduced-motion: reduce){ .sticky-cta{ transition:none; } }
+
+/* ==================================================================
    FOOTER
    ================================================================== */
 footer{
@@ -951,6 +1044,49 @@ footer{
 }
 @media (min-width:760px){ .foot-legal{ justify-items:end; text-align:right; } }
 </style>
+<!-- ===== DADOS ESTRUTURADOS (Schema.org) =====
+     Ajuda o Google a entender que é um curso com preço e instrutor.
+     Lembre de trocar SEU-DOMINIO-AQUI aqui também (mesmo find-replace). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Invente com Claude — Do Zero ao Avançado",
+  "description": "Treinamento prático que ensina a usar o Claude do básico até aplicações avançadas: Projetos, Skills, agentes de IA, conteúdos, sites, vídeos e sistemas personalizados — sem programação avançada.",
+  "url": "https://SEU-DOMINIO-AQUI.com/",
+  "image": "https://SEU-DOMINIO-AQUI.com/og-image.jpg",
+  "inLanguage": "pt-BR",
+  "provider": {
+    "@type": "Organization",
+    "name": "Invente com IA",
+    "url": "https://www.inventecomia.com",
+    "sameAs": [
+      "https://www.youtube.com/@invente",
+      "https://www.youtube.com/@InventecomIA",
+      "https://instagram.com/inventecomia"
+    ]
+  },
+  "instructor": {
+    "@type": "Person",
+    "name": "Cassiano Bassil",
+    "jobTitle": "Sócio-diretor de criação da Invente Comunicação"
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "courseWorkload": "PT3H"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "197.00",
+    "priceCurrency": "BRL",
+    "availability": "https://schema.org/InStock",
+    "url": "https://SEU-DOMINIO-AQUI.com/",
+    "category": "Curso online"
+  }
+}
+</script>
+
 </head>
 <body>
 
@@ -976,6 +1112,7 @@ footer{
 <section class="scene1">
   <div class="bg" data-plx="0.12"></div>
   <div class="shade"></div>
+  <div class="claude-aura" aria-hidden="true"></div>
   <div class="fog" style="width:520px;height:320px;left:-140px;top:30%;background:rgba(61,255,110,.13)"></div>
   <div class="fog" style="width:420px;height:280px;right:-100px;top:10%;background:rgba(249,115,22,.1);animation-delay:-8s"></div>
   <div class="container content">
@@ -1464,7 +1601,10 @@ footer{
       </ul>
       <div class="price">
         <!-- >>> PREÇO — EDITE AQUI (de/por) <<< -->
-        <div class="price-from">DE R$ 497</div>
+        <div class="price-old">
+          <span class="stamp-adjust">Reajuste programado</span>
+          <div class="price-from">DE R$ 497</div>
+        </div>
         <div class="price-now"><span class="cur">R$</span>197</div>
         <div class="price-vista">à vista</div>
         <div class="price-cond">ou parcelado no cartão pela Hotmart</div>
@@ -1523,6 +1663,12 @@ footer{
     </div>
   </div>
 </footer>
+
+<!-- ============ BARRA DE CTA FIXA (mobile) ============ -->
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <div class="sc-info"><i></i><span>OPERAÇÃO ABERTA · <b>R$ 197</b></span></div>
+  <a href="#alistamento" class="sc-btn">Entrar</a>
+</div>
 
 <script>
 (function(){
@@ -1688,12 +1834,46 @@ footer{
     });
   });
 
-  /* =====
-     CHECKOUT — apenas o botão final abre a Hotmart.
-     Cole o link real abaixo e descomente:
-     // document.querySelectorAll('.btn-checkout').forEach(function(a){ a.href='https://pay.hotmart.com/SEU_LINK'; });
-     Os CTAs do hero e intermediários rolam até #alistamento por design.
-  ===== */
+  /* ===== BARRA DE CTA FIXA (mobile) =====
+     Aparece quando o hero sai da tela; some quando a oferta está visível. */
+  var sticky = document.getElementById('stickyCta');
+  var heroSec = document.querySelector('.scene1');
+  var offerSec = document.getElementById('alistamento');
+  if (sticky && heroSec && offerSec && 'IntersectionObserver' in window) {
+    var heroGone = false, offerVisible = false;
+    function updSticky(){
+      var show = heroGone && !offerVisible;
+      sticky.classList.toggle('show', show);
+      sticky.setAttribute('aria-hidden', String(!show));
+    }
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ heroGone = !e.isIntersecting; });
+      updSticky();
+    }, { threshold:0 }).observe(heroSec);
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ offerVisible = e.isIntersecting; });
+      updSticky();
+    }, { threshold:0.05 }).observe(offerSec);
+  }
+
+  /* ===== CHECKOUT (Hotmart) =====
+     Link base limpo — as UTMs de origem (anúncio, e-mail, orgânico) são
+     repassadas automaticamente da URL da página para o checkout, garantindo
+     atribuição correta por canal nos relatórios da Hotmart. */
+  var CHECKOUT_URL = 'https://pay.hotmart.com/O106304050S?checkoutMode=10';
+  try {
+    var qs = new URLSearchParams(location.search);
+    var pass = [];
+    qs.forEach(function(v, k){
+      if (/^(utm_|src$|sck$|xcod$|gclid$|fbclid$|ttclid$)/i.test(k)) {
+        pass.push(encodeURIComponent(k) + '=' + encodeURIComponent(v));
+      }
+    });
+    var finalUrl = CHECKOUT_URL + (pass.length ? '&' + pass.join('&') : '');
+    document.querySelectorAll('.btn-checkout').forEach(function(a){ a.href = finalUrl; });
+  } catch(e) {
+    document.querySelectorAll('.btn-checkout').forEach(function(a){ a.href = CHECKOUT_URL; });
+  }
 })();
 </script>
 </body>
