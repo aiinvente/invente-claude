@@ -1033,6 +1033,86 @@ nav .status span{ display:none; }
 @media (prefers-reduced-motion: reduce){ .sticky-cta{ transition:none; } }
 
 /* ==================================================================
+   VSL — transmissão do Centro de Treinamento (vídeo da aula)
+   ================================================================== */
+.vsl{ padding:64px 0 8px; position:relative; overflow:hidden; }
+@media (max-width:719px){ .vsl{ padding:46px 0 4px; } }
+.vsl .head{ max-width:720px; margin-bottom:30px; }
+.vsl-frame{
+  max-width:860px; margin:0 auto;
+  border:1.5px solid rgba(61,255,110,.3);
+  border-radius:8px;
+  background:var(--graph);
+  padding:10px;
+  box-shadow:0 30px 90px rgba(0,0,0,.65), 0 0 60px rgba(61,255,110,.1);
+}
+.vsl-bar{
+  display:flex; align-items:center; gap:10px;
+  padding:6px 8px 12px;
+  font-family:var(--term); font-size:.92rem;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--grey);
+}
+.vsl-bar .rec{
+  width:9px; height:9px; border-radius:50%; flex:none;
+  background:var(--red); box-shadow:0 0 10px var(--red);
+  animation:flicker 2.2s linear infinite;
+}
+.vsl-bar b{ color:var(--white); font-weight:400; }
+.vsl-bar .dur{ margin-left:auto; color:#6a7068; }
+.vsl-screen{
+  position:relative;
+  border-radius:5px;
+  overflow:hidden;
+  background:#050607;
+}
+.vsl-screen video{
+  display:block; width:100%; height:auto;
+  aspect-ratio:16/9;
+  object-fit:contain;
+  background:#050607;
+}
+/* capa temática: some no primeiro play */
+.vsl-cover{
+  position:absolute; inset:0; z-index:3;
+  width:100%; border:none; cursor:pointer;
+  display:grid; place-items:center; gap:0;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse 80% 70% at 50% 45%, rgba(61,255,110,.1), transparent 70%),
+    rgba(5,6,7,.35);
+  transition:opacity .4s ease;
+}
+.vsl-cover.hide{ opacity:0; pointer-events:none; }
+.vsl-cover .inner{ display:grid; justify-items:center; gap:14px; }
+.vsl-cover .play{
+  width:86px; height:86px; border-radius:50%;
+  border:2px solid var(--ecto);
+  display:grid; place-items:center;
+  color:var(--ecto); font-size:1.7rem;
+  background:rgba(5,6,7,.7);
+  box-shadow:0 0 40px rgba(61,255,110,.4), inset 0 0 24px rgba(61,255,110,.12);
+  transition:transform .2s ease, box-shadow .2s ease;
+  padding-left:6px; /* centraliza opticamente o ▶ */
+}
+.vsl-cover:hover .play{ transform:scale(1.08); box-shadow:0 0 60px rgba(61,255,110,.6), inset 0 0 30px rgba(61,255,110,.2); }
+.vsl-cover .lbl{
+  font-family:var(--term); font-size:1.05rem;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ecto); text-shadow:0 0 14px rgba(61,255,110,.5);
+}
+.vsl-cover .sub{
+  font-family:var(--term); font-size:.85rem;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--grey);
+}
+@media (max-width:719px){
+  .vsl-cover .play{ width:64px; height:64px; font-size:1.3rem; }
+  .vsl-cover .lbl{ font-size:.92rem; }
+}
+@media (prefers-reduced-motion: reduce){ .vsl-cover{ transition:none; } }
+
+/* ==================================================================
    FOOTER
    ================================================================== */
 footer{
@@ -1171,6 +1251,33 @@ footer{
       <div class="item rv"><span class="k">Comportamento observado</span><p>Responde de forma <b>genérica</b> quando tratada como um buscador. Revela capacidades extraordinárias quando recebe <b>contexto, instruções e estrutura</b>.</p></div>
       <div class="item rv rv-d1"><span class="k">Habilidades confirmadas</span><p>Cria conteúdos, carrosséis, sites, vídeos, agentes e <b>sistemas completos</b> — quando comandada por um operador treinado.</p></div>
       <div class="item rv rv-d2"><span class="k">Requisito do operador</span><p><b>Nenhuma experiência técnica.</b> A operação começa do zero absoluto e avança até a construção de sistemas inteligentes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VSL — transmissão interceptada do Centro de Treinamento
+     >>> coloque o arquivo aula.mp4 nesta mesma pasta <<<
+     ============================================================ -->
+<section class="vsl">
+  <div class="container">
+    <div class="head rv">
+      <p class="term">transmissão do comandante · briefing da missão</p>
+      <h2 class="h-display h-lg" style="margin-top:12px">O briefing da sua <span class="t-ecto">operação</span>.</h2>
+      <p class="lead" style="margin-top:14px">Em 1 minuto, Cassiano apresenta o que você vai aprender e construir em cada módulo do treinamento.</p>
+    </div>
+    <div class="vsl-frame rv">
+      <div class="vsl-bar"><span class="rec"></span><b>BRIEFING_DA_OPERACAO.MP4</b><span class="dur">REC · ~01:00</span></div>
+      <div class="vsl-screen">
+        <video id="aulaVideo" src="aula.mp4" poster="poster-aula.jpg" preload="metadata" playsinline></video>
+        <button class="vsl-cover" id="vslCover" aria-label="Assistir ao briefing dos módulos do treinamento">
+          <span class="inner">
+            <span class="play">▶</span>
+            <span class="lbl">Reproduzir briefing</span>
+            <span class="sub">o que você aprende em cada módulo · com áudio</span>
+          </span>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -1854,6 +1961,26 @@ footer{
       ans.style.maxHeight = open ? ans.scrollHeight + 'px' : '0px';
     });
   });
+
+  /* ===== VSL — vídeo da aula ===== */
+  var vslVideo = document.getElementById('aulaVideo');
+  var vslCover = document.getElementById('vslCover');
+  if (vslVideo && vslCover) {
+    vslCover.addEventListener('click', function(){
+      vslVideo.setAttribute('controls', ''); /* controles nativos só após o 1º play */
+      vslCover.classList.add('hide');
+      var p = vslVideo.play();
+      if (p && p.catch) p.catch(function(){ /* usuário decide via controles */ });
+    });
+    /* pausa automática se o vídeo sair da tela (evita áudio "fantasma") */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if (!e.isIntersecting && !vslVideo.paused) vslVideo.pause();
+        });
+      }, { threshold:.2 }).observe(vslVideo);
+    }
+  }
 
   /* ===== BARRA DE CTA FIXA (mobile) =====
      Aparece quando o hero sai da tela; some quando a oferta está visível. */
