@@ -314,34 +314,42 @@ nav .status span{ display:none; }
 }
 @keyframes hint{ 0%,100%{ transform:translate(-50%,0); opacity:.6; } 50%{ transform:translate(-50%,8px); opacity:1; } }
 
-/* HERO MOBILE — composição própria */
+/* HERO MOBILE — composição própria (v2)
+   A foto é horizontal; em tela vertical com 'cover' de tela cheia o zoom
+   fica extremo (só o rosto aparece) e o texto cai sobre ele.
+   Solução: a imagem vira uma FAIXA superior com enquadramento controlado
+   (rosto inteiro + criatura Claude visíveis) e a copy entra ABAIXO,
+   sobre preto, fundida por gradiente — o texto nunca cruza o rosto. */
 @media (max-width:719px){
   .scene1{
     min-height:auto;
     display:block;
+    background:var(--black);
   }
-  /* reenquadra: apresentador mais à direita, rosto e Claude no terço superior,
-     lado esquerdo livre para a máscara escura */
   .scene1 .bg{
-    inset:0;
-    background-position:86% 8%;
+    position:relative; inset:auto;
+    height:50svh; min-height:300px; max-height:520px;
+    background-position:62% 16%; /* janela mais larga: pega o Claude e o rosto */
     background-size:cover;
-    transform:none !important; /* desliga parallax no mobile p/ manter enquadramento */
+    transform:none !important; /* parallax desligado no mobile */
   }
-  /* camada escura reforçada à esquerda e na parte inferior — o texto nunca
-     atravessa o rosto: a copy só começa abaixo de 58svh, já em área escura */
   .scene1 .shade{
-    background:
-      linear-gradient(90deg, rgba(5,6,7,.55) 0%, rgba(5,6,7,.15) 45%, rgba(5,6,7,0) 70%),
-      linear-gradient(180deg, rgba(5,6,7,.68) 0%, rgba(5,6,7,.22) 26%, rgba(5,6,7,.55) 48%, rgba(5,6,7,.93) 66%, var(--black) 88%);
+    inset:auto; top:0; left:0; right:0;
+    height:50svh; min-height:300px; max-height:520px;
+    background:linear-gradient(180deg,
+      rgba(5,6,7,.6) 0%,      /* proteção sob o header */
+      rgba(5,6,7,.05) 26%,    /* rosto e Claude limpos */
+      rgba(5,6,7,.12) 55%,
+      rgba(5,6,7,.78) 82%,    /* base escurecendo */
+      var(--black) 100%);     /* funde no preto da copy */
   }
   .scene1 .content{
-    /* o shorthand anterior (58svh 0 52px) zerava o padding lateral do
-       .container — por isso o texto colava nas bordas */
-    padding:58svh 24px 52px;
+    margin-top:-54px; /* copy encosta na base já escura da imagem (peito, não rosto) */
+    padding:0 24px 48px;
     width:100%;
     max-width:100%;
     box-sizing:border-box;
+    position:relative; z-index:2;
   }
   .scene1 h1{
     font-size:clamp(2rem, 10vw, 2.8rem);
@@ -349,8 +357,8 @@ nav .status span{ display:none; }
     overflow-wrap:break-word;
   }
   .scene1 .lead{
-    margin:16px auto 26px 0;
-    max-width:calc(100vw - 48px);
+    margin:16px 0 26px;
+    max-width:100%;
     line-height:1.7;
   }
   .scene1 .ctas{
@@ -364,6 +372,7 @@ nav .status span{ display:none; }
     margin:0 auto;
   }
   .scene1 .scroll-hint{ display:none; }
+  .scene1 .fog{ display:none; } /* névoas dimensionadas p/ desktop não vazam sobre a copy */
 }
 
 /* ==================================================================
